@@ -4,165 +4,201 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مبادرة رقيم | لتمكين الشباب تكنولوجياً</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            /* ألوان المنظمات التنموية الاحترافية */
-            --ngo-primary: #0f172a;    /* كحلي عميق - للموثوقية */
-            --ngo-secondary: #059669;  /* أخضر زمردي - للنمو والاستدامة */
-            --ngo-accent: #f59e0b;     /* أصفر عنبري - للفت الانتباه والأزرار */
-            --ngo-bg: #f8fafc;         /* رمادي فاتح جداً - للخلفيات */
-            --ngo-surface: #ffffff;    /* أبيض ناصع - للبطاقات */
-            --text-main: #1e293b;
-            --text-muted: #475569;
-            --border-light: #e2e8f0;
+            /* =========================================================
+               ألوان رقيم المعتمدة (Clean Tech Palette)
+               ========================================================= */
+            --brand-dark: #161a34;      /* كحلي رقيم المطفأ والعميق */
+            --brand-primary: #1c2142;   /* كحلي أفتح قليلاً للتباين */
+            --brand-accent: #78b8cf;    /* سماوي رقيم الهادئ والمشرق */
+            --brand-accent-glow: rgba(120, 184, 207, 0.4); /* توهج سماوي */
+            --brand-white: #ffffff;     /* أبيض نقي */
+            
+            /* ألوان الواجهة الثابتة */
+            --bg-page: #f4f7fb;         /* رمادي فاتح جداً مائل للزرقة لراحة العين */
+            --surface: #ffffff;         /* خلفية البطاقات */
+            --text-main: #161a34;       /* النص الرئيسي مطابق للون الشعار الداكن */
+            --text-muted: #64748B;
+            --border-soft: #E2E8F0;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
-        body { background-color: var(--ngo-bg); color: var(--text-main); line-height: 1.8; scroll-behavior: smooth; overflow-x: hidden; }
+        body { background-color: var(--bg-page); color: var(--text-main); line-height: 1.7; overflow-x: hidden; }
 
-        /* Utilities */
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
-        .text-center { text-align: center; }
+        .container { max-width: 1240px; margin: 0 auto; padding: 0 5%; }
         
-        /* حركات الظهور الاحترافية */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        /* حركات الظهور الانسيابية */
+        .reveal { opacity: 0; transform: translateY(50px) scale(0.98); transition: all 1s cubic-bezier(0.22, 1, 0.36, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0) scale(1); }
 
-        /* Navbar - تصميم أنظف وأكثر رسمية */
-        header { position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-light); z-index: 1000; padding: 12px 0; transition: all 0.3s ease; }
+        /* ================= Header ================= */
+        header { position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); z-index: 1000; padding: 12px 0; border-bottom: 3px solid var(--brand-accent); transition: all 0.4s ease; }
+        header.scrolled { padding: 8px 0; box-shadow: 0 10px 40px rgba(22, 26, 52, 0.08); background: rgba(255, 255, 255, 0.98); }
         .nav-container { display: flex; justify-content: space-between; align-items: center; }
-        .logo img { height: 60px; transition: transform 0.3s ease; }
+        .logo img { height: 65px; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .logo img:hover { transform: scale(1.08); }
         
-        .menu-toggle { display: none; font-size: 1.8rem; color: var(--ngo-primary); cursor: pointer; z-index: 1001; }
-        nav ul { list-style: none; display: flex; gap: 35px; align-items: center; }
-        nav ul li a { text-decoration: none; color: var(--text-main); font-weight: 600; font-size: 1.05rem; transition: color 0.3s ease; }
-        nav ul li a:hover { color: var(--ngo-secondary); }
-        .nav-btn { background: var(--ngo-secondary); color: white !important; padding: 10px 24px; border-radius: 6px; font-weight: 700; transition: background 0.3s; }
-        .nav-btn:hover { background: #047857; }
-
-        /* Hero Section - تصميم مجلة رقمية (Editorial) */
-        .hero { min-height: 100vh; display: flex; align-items: center; background: linear-gradient(to right, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.7) 100%), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80') center/cover; color: white; padding-top: 80px; }
-        .hero-content { max-width: 800px; animation: fadeIn 1.5s ease-out; }
-        .hero-tag { display: inline-block; padding: 6px 16px; background: rgba(5, 150, 105, 0.2); color: #34d399; border-radius: 4px; font-weight: 700; font-size: 0.9rem; margin-bottom: 20px; letter-spacing: 1px; border: 1px solid rgba(5, 150, 105, 0.4); }
-        .hero h1 { font-size: clamp(2.8rem, 6vw, 4.5rem); font-weight: 900; margin-bottom: 25px; line-height: 1.2; }
-        .hero p { font-size: clamp(1.1rem, 2vw, 1.3rem); margin-bottom: 40px; color: #cbd5e1; font-weight: 400; max-width: 700px; }
+        nav ul { list-style: none; display: flex; gap: 40px; align-items: center; }
+        nav ul li a { text-decoration: none; color: var(--brand-dark); font-weight: 800; font-size: 1.05rem; transition: color 0.3s; position: relative; }
+        nav ul li a::after { content: ''; position: absolute; bottom: -5px; right: 0; width: 0; height: 3px; background: var(--brand-accent); transition: width 0.3s ease; border-radius: 2px; }
+        nav ul li a:hover::after { width: 100%; }
+        nav ul li a:hover { color: var(--brand-accent); }
         
-        .hero-buttons { display: flex; gap: 20px; flex-wrap: wrap; }
-        .btn { padding: 16px 36px; border-radius: 6px; font-size: 1.1rem; font-weight: 700; text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none; text-align: center; display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
-        .btn-primary { background: var(--ngo-secondary); color: white; }
-        .btn-primary:hover { background: #047857; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(5, 150, 105, 0.3); }
-        .btn-outline { background: transparent; color: white; border: 2px solid white; }
-        .btn-outline:hover { background: white; color: var(--ngo-primary); transform: translateY(-3px); }
+        .btn-nav { background: var(--brand-dark); color: var(--brand-white) !important; padding: 12px 30px; border-radius: 12px; font-weight: 800; transition: all 0.3s; }
+        .btn-nav::after { display: none; }
+        .btn-nav:hover { background: var(--brand-accent); color: var(--brand-dark) !important; transform: translateY(-3px); box-shadow: 0 10px 25px var(--brand-accent-glow); }
+        
+        .menu-btn { display: none; font-size: 1.8rem; color: var(--brand-dark); cursor: pointer; z-index: 1001; }
 
-        /* Sections General Formatting */
-        section { padding: 120px 0; }
-        .section-header { margin-bottom: 70px; }
-        .section-header p { color: var(--ngo-secondary); font-weight: 700; margin-bottom: 10px; font-size: 1.1rem; }
-        .section-title { font-size: clamp(2.2rem, 4vw, 3rem); font-weight: 900; color: var(--ngo-primary); line-height: 1.3; }
+        /* ================= Hero Section ================= */
+        .hero { min-height: 100vh; display: flex; align-items: center; position: relative; padding-top: 80px; 
+                /* استخدام rgba للون #161a34 لعمل الشفافية فوق الصورة */
+                background: linear-gradient(135deg, rgba(22, 26, 52, 0.92) 0%, rgba(22, 26, 52, 0.75) 100%), url('https://nahno-new.s3.eu-west-3.amazonaws.com/ngo/photo-260226194225B0p9E.png') center/cover no-repeat; 
+                color: var(--brand-white); text-align: center; }
+        .hero::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 150px; background: linear-gradient(to top, var(--bg-page), transparent); }
+        
+        .hero-content { max-width: 950px; margin: 0 auto; position: relative; z-index: 2; animation: fadeInUp 1.2s ease; }
+        .badge { display: inline-flex; align-items: center; gap: 10px; padding: 8px 25px; background: rgba(255, 255, 255, 0.08); border: 1px solid var(--brand-accent); border-radius: 50px; font-weight: 800; font-size: 0.95rem; margin-bottom: 30px; backdrop-filter: blur(10px); color: var(--brand-white); }
+        .badge i { color: var(--brand-accent); }
+        
+        .hero h1 { font-size: clamp(3rem, 6vw, 5rem); font-weight: 900; line-height: 1.15; margin-bottom: 25px; letter-spacing: -1px; text-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .hero h1 span { color: var(--brand-accent); position: relative; }
+        
+        .hero p { font-size: clamp(1.15rem, 2vw, 1.4rem); color: #E2E8F0; margin-bottom: 45px; font-weight: 500; line-height: 1.8; max-width: 800px; margin-inline: auto; text-shadow: 0 2px 5px rgba(0,0,0,0.3); }
+        
+        .hero-actions { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        .btn { padding: 18px 40px; border-radius: 14px; font-size: 1.15rem; font-weight: 800; text-decoration: none; display: inline-flex; align-items: center; gap: 12px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; border: none; }
+        .btn-primary { background: var(--brand-accent); color: var(--brand-dark); box-shadow: 0 10px 30px var(--brand-accent-glow); }
+        .btn-primary:hover { filter: brightness(1.05); transform: translateY(-5px); box-shadow: 0 15px 40px rgba(120, 184, 207, 0.6); }
+        .btn-outline { background: rgba(0,0,0,0.2); color: var(--brand-white); border: 2px solid rgba(255,255,255,0.6); backdrop-filter: blur(5px); }
+        .btn-outline:hover { background: var(--brand-white); color: var(--brand-dark); transform: translateY(-5px); border-color: var(--brand-white); }
 
-        /* About & Philosophy (NGO Split Layout) */
-        .about-section { background-color: var(--ngo-surface); }
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .about-text p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 20px; }
-        .about-features { display: grid; gap: 30px; margin-top: 40px; }
-        .feature-item { display: flex; gap: 20px; align-items: flex-start; }
-        .feature-icon { width: 50px; height: 50px; background: rgba(5, 150, 105, 0.1); color: var(--ngo-secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
-        .feature-item h4 { font-size: 1.3rem; color: var(--ngo-primary); margin-bottom: 5px; }
-        .feature-item p { color: var(--text-muted); font-size: 1rem; }
-        .about-image img { width: 100%; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        /* ================= Section Headers ================= */
+        section { padding: 120px 0; position: relative; }
+        .sec-title-wrapper { text-align: center; margin-bottom: 70px; }
+        .sec-subtitle { color: var(--brand-dark); font-weight: 900; font-size: 1.1rem; margin-bottom: 12px; display: inline-block; letter-spacing: 1.5px; background: var(--brand-accent); padding: 5px 15px; border-radius: 8px; border: 1px solid var(--brand-accent); }
+        .sec-title { font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 900; color: var(--brand-dark); line-height: 1.3; }
 
-        /* Impact Stats - تصميم موثوق */
-        .stats { background: var(--ngo-primary); color: white; padding: 80px 0; border-top: 5px solid var(--ngo-secondary); }
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; text-align: center; }
+        /* ================= About ================= */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
+        .about-text .lead { font-size: 1.4rem; font-weight: 800; color: var(--brand-dark); margin-bottom: 25px; line-height: 1.6; }
+        .about-text p { color: var(--text-muted); margin-bottom: 25px; font-size: 1.15rem; line-height: 1.9; }
+        .about-image { position: relative; border-radius: 30px; overflow: hidden; box-shadow: 0 30px 60px rgba(22, 26, 52, 0.1); }
+        .about-image img { width: 100%; display: block; transition: transform 0.7s ease; }
+        .about-image:hover img { transform: scale(1.03); }
+
+        /* ================= Age Groups ================= */
+        .age-section { background: var(--surface); }
+        .age-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px; }
+        .age-card { padding: 45px 30px; text-align: center; background: var(--bg-page); border-radius: 24px; border: 1px solid var(--border-soft); transition: all 0.4s ease; position: relative; z-index: 1; overflow: hidden; }
+        .age-card::before { content: ''; position: absolute; top: 0; right: 0; width: 100%; height: 100%; background: var(--brand-dark); z-index: -1; transform: scaleY(0); transform-origin: bottom; transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1); }
+        .age-card:hover { transform: translateY(-15px); border-color: transparent; box-shadow: 0 25px 50px rgba(22, 26, 52, 0.15); }
+        .age-card:hover::before { transform: scaleY(1); }
+        .age-card .icon { font-size: 2.8rem; color: var(--brand-accent); margin-bottom: 25px; transition: all 0.4s; }
+        .age-card:hover .icon { color: var(--brand-accent); transform: scale(1.1); }
+        .age-card h3 { font-size: 2.5rem; font-weight: 900; margin-bottom: 15px; color: var(--brand-dark); transition: color 0.4s; direction: ltr; }
+        .age-card:hover h3 { color: var(--brand-white); }
+        .age-card p { font-size: 1.1rem; font-weight: 700; color: var(--text-muted); transition: color 0.4s; }
+        .age-card:hover p { color: var(--brand-white); opacity: 0.9; }
+
+        /* ================= Tracks ================= */
+        .tracks-section { background: var(--bg-page); position: relative; }
+        .tracks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .track-card { background: var(--surface); padding: 50px 40px; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.02); transition: all 0.4s ease; display: flex; flex-direction: column; border-bottom: 5px solid transparent; }
+        .track-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(22, 26, 52, 0.08); border-bottom-color: var(--brand-accent); }
+        .track-icon { width: 80px; height: 80px; background: rgba(120, 184, 207, 0.15); color: var(--brand-accent); border-radius: 24px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin-bottom: 30px; transition: all 0.4s; }
+        .track-card:hover .track-icon { background: var(--brand-accent); color: var(--brand-dark); transform: rotate(-10deg); }
+        .track-card h3 { font-size: 1.6rem; font-weight: 900; color: var(--brand-dark); margin-bottom: 20px; }
+        .track-card p { color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; margin-bottom: 25px; flex-grow: 1; }
+        
+        .track-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+        .track-tags span { background: var(--bg-page); color: var(--brand-primary); padding: 6px 14px; border-radius: 8px; font-size: 0.85rem; font-weight: 800; border: 1px solid var(--border-soft); }
+
+        /* ================= Stats ================= */
+        .stats-section { background: var(--brand-dark); color: var(--brand-white); padding: 100px 0; border-radius: 40px; max-width: 95%; margin: 0 auto; position: relative; overflow: hidden; box-shadow: 0 30px 60px rgba(22, 26, 52, 0.2); border: 1px solid rgba(255,255,255,0.05); }
+        .stats-section::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(120, 184, 207, 0.1) 0%, transparent 60%); }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; text-align: center; position: relative; z-index: 1; }
         .stat-item { padding: 20px; }
-        .stat-number { font-size: clamp(3.5rem, 6vw, 5rem); font-weight: 900; color: var(--ngo-secondary); margin-bottom: 5px; line-height: 1; }
-        .stat-title { font-size: 1.2rem; font-weight: 600; color: #cbd5e1; }
+        .stat-num { font-size: clamp(3.5rem, 6vw, 5.5rem); font-weight: 900; color: var(--brand-accent); margin-bottom: 10px; line-height: 1; text-shadow: 0 10px 30px var(--brand-accent-glow); }
+        .stat-text { font-size: 1.25rem; font-weight: 800; color: var(--brand-white); opacity: 0.9; }
 
-        /* Programs Section - تصميم بطاقات نظيف */
-        .programs { background-color: var(--ngo-bg); }
-        .programs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
-        .program-card { background: var(--ngo-surface); padding: 50px 40px; border-radius: 8px; border: 1px solid var(--border-light); transition: all 0.4s ease; border-top: 4px solid transparent; }
-        .program-card:hover { border-top-color: var(--ngo-secondary); box-shadow: 0 20px 40px rgba(0,0,0,0.06); transform: translateY(-5px); }
-        .p-icon { font-size: 2.5rem; color: var(--ngo-secondary); margin-bottom: 25px; }
-        .program-card h3 { font-size: 1.6rem; font-weight: 800; color: var(--ngo-primary); margin-bottom: 15px; }
-        .program-card p { color: var(--text-muted); font-size: 1.1rem; }
+        /* ================= Form ================= */
+        .join-section { background: var(--bg-page); }
+        .form-container { background: var(--surface); padding: 70px; border-radius: 30px; box-shadow: 0 25px 70px rgba(22, 26, 52, 0.05); border: 1px solid var(--border-soft); max-width: 900px; margin: 0 auto; border-top: 8px solid var(--brand-primary); }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .input-group { margin-bottom: 30px; }
+        .input-group label { display: block; margin-bottom: 12px; font-weight: 800; color: var(--brand-dark); font-size: 1.05rem; }
+        .form-control { width: 100%; padding: 18px 20px; border: 2px solid var(--border-soft); border-radius: 14px; font-family: 'Cairo', sans-serif; font-size: 1.05rem; background: var(--bg-page); transition: all 0.3s; color: var(--text-main); }
+        .form-control:focus { border-color: var(--brand-accent); outline: none; background: var(--surface); box-shadow: 0 0 0 5px var(--brand-accent-glow); }
+        /* استبدال لون الأيقونة في القائمة المنسدلة بلون #161a34 */
+        select.form-control { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23161a34%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"); background-repeat: no-repeat; background-position: left 1.5rem top 50%; background-size: 0.8rem auto; padding-left: 3rem; }
 
-        /* NGO Registration Form */
-        .join-section { background-color: var(--ngo-surface); }
-        .form-wrapper { background: var(--ngo-surface); padding: 60px; border-radius: 12px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1); border: 1px solid var(--border-light); max-width: 900px; margin: 0 auto; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
-        .form-group { margin-bottom: 25px; }
-        .form-group label { display: block; margin-bottom: 10px; font-weight: 700; color: var(--ngo-primary); font-size: 1.05rem; }
-        .form-control { width: 100%; padding: 16px; border: 2px solid var(--border-light); border-radius: 6px; font-family: 'Cairo', sans-serif; font-size: 1.05rem; background: var(--ngo-bg); transition: all 0.3s ease; color: var(--text-main); }
-        .form-control:focus { border-color: var(--ngo-secondary); outline: none; background: var(--ngo-surface); box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.1); }
-        select.form-control { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%231e293b%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"); background-repeat: no-repeat; background-position: left 1rem top 50%; background-size: 0.65rem auto; padding-left: 2.5rem; }
+        .success-msg { display: none; background: #F0FDF4; color: #166534; padding: 40px; border-radius: 20px; text-align: center; border: 2px solid #BBF7D0; margin-bottom: 40px; animation: fadeInUp 0.5s ease; }
+        .success-msg i { font-size: 4rem; color: #22C55E; margin-bottom: 20px; }
+        .success-msg h3 { font-size: 2.2rem; margin-bottom: 10px; font-weight: 900; }
 
-        /* Success Message */
-        .success-message { display: none; background: #ecfdf5; color: #065f46; padding: 40px; border-radius: 8px; text-align: center; border: 1px solid #a7f3d0; animation: fadeIn 0.5s ease-out; }
-        .success-message i { font-size: 4rem; color: #10b981; margin-bottom: 20px; }
-        .success-message h3 { font-size: 2rem; margin-bottom: 15px; font-weight: 800; }
-        .success-message p { font-size: 1.2rem; }
+        /* ================= Footer ================= */
+        footer { background: var(--brand-dark); color: var(--brand-white); padding: 100px 0 30px; border-top: 5px solid var(--brand-accent); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 70px; margin-bottom: 60px; padding-bottom: 60px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .f-logo img { height: 85px; filter: brightness(0) invert(1); margin-bottom: 30px; }
+        .f-logo p { color: #CBD5E1; font-size: 1.15rem; line-height: 1.9; max-width: 450px; }
+        .socials { display: flex; gap: 15px; margin-top: 30px; }
+        .socials a { width: 50px; height: 50px; border-radius: 14px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; color: var(--brand-white); font-size: 1.3rem; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.1); }
+        .socials a:hover { background: var(--brand-accent); border-color: var(--brand-accent); color: var(--brand-dark); transform: translateY(-5px); box-shadow: 0 10px 20px var(--brand-accent-glow); }
+        .f-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 30px; color: var(--brand-white); }
+        .f-links { list-style: none; }
+        .f-links li { margin-bottom: 18px; }
+        .f-links a { color: #CBD5E1; text-decoration: none; transition: 0.3s; display: flex; align-items: center; gap: 10px; font-size: 1.1rem; }
+        .f-links a:hover { color: var(--brand-accent); transform: translateX(-8px); }
+        .f-contact { list-style: none; }
+        .f-contact li { display: flex; gap: 18px; margin-bottom: 25px; color: #CBD5E1; font-size: 1.1rem; align-items: flex-start; }
+        .f-contact i { color: var(--brand-accent); margin-top: 6px; font-size: 1.2rem; }
+        .copyright { text-align: center; color: #64748B; font-size: 1.05rem; }
 
-        /* Footer - طابع المنظمات الرسمي */
-        footer { background-color: var(--ngo-primary); color: white; padding: 80px 0 30px; }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; margin-bottom: 50px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 50px; }
-        .footer-logo img { height: 75px; filter: brightness(0) invert(1); margin-bottom: 25px; }
-        .footer-logo p { color: #cbd5e1; font-size: 1.1rem; max-width: 400px; }
-        .social-links { display: flex; gap: 15px; margin-top: 25px; }
-        .social-links a { width: 45px; height: 45px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; transition: all 0.3s ease; text-decoration: none; }
-        .social-links a:hover { background: var(--ngo-secondary); border-color: var(--ngo-secondary); transform: translateY(-3px); }
-        .footer-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 25px; color: white; }
-        .footer-contact { list-style: none; }
-        .footer-contact li { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 18px; color: #cbd5e1; font-size: 1.05rem; }
-        .footer-contact li i { color: var(--ngo-secondary); margin-top: 5px; }
-        .footer-contact a { color: #cbd5e1; text-decoration: none; transition: color 0.3s; }
-        .footer-contact a:hover { color: white; }
-        .copyright { text-align: center; color: #94a3b8; font-size: 1rem; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        /* Responsive */
-        @media (max-width: 992px) {
-            .about-grid { grid-template-columns: 1fr; }
-            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+        /* ================= Responsive ================= */
+        @media (max-width: 1024px) {
+            .about-grid, .footer-grid { grid-template-columns: 1fr; gap: 50px; }
+            .footer-grid { text-align: center; }
+            .socials, .f-contact li { justify-content: center; }
+            .f-links a { justify-content: center; }
         }
         @media (max-width: 768px) {
-            .menu-toggle { display: block; }
-            nav { position: fixed; top: 0; right: -100%; width: 100%; height: 100vh; background: rgba(15, 23, 42, 0.98); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; transition: right 0.4s ease; z-index: 1000; }
+            .menu-btn { display: block; }
+            nav { position: fixed; top: 0; right: -100%; width: 100%; height: 100vh; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(20px); display: flex; align-items: center; justify-content: center; transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1); z-index: 1000; }
             nav.active { right: 0; }
-            nav ul { flex-direction: column; gap: 30px; text-align: center; }
-            nav ul li a { font-size: 1.5rem; color: white; }
-            .nav-btn { background: transparent; border: 2px solid var(--ngo-secondary); font-size: 1.5rem; }
-            header.menu-open { background: transparent; border: none; }
-            header.menu-open .menu-toggle { color: white; }
-            section { padding: 80px 0; }
-            .hero-buttons { flex-direction: column; width: 100%; }
-            .hero-buttons .btn { width: 100%; }
+            nav ul { flex-direction: column; gap: 35px; text-align: center; }
+            nav ul li a { font-size: 1.6rem; color: var(--brand-dark); }
+            .btn-nav { font-size: 1.5rem; padding: 15px 40px; }
+            .hero-actions { flex-direction: column; width: 100%; }
+            .hero-actions .btn { width: 100%; justify-content: center; }
             .form-row { grid-template-columns: 1fr; gap: 0; }
-            .form-wrapper { padding: 40px 20px; }
+            .form-container { padding: 40px 20px; border-radius: 20px; }
+            .stats-section { border-radius: 20px; max-width: 100%; }
+            section { padding: 80px 0; }
         }
     </style>
 </head>
 <body>
 
-    <header id="main-header">
+    <header id="header">
         <div class="container nav-container">
             <div class="logo">
                 <img src="https://nahno-new.s3.eu-west-3.amazonaws.com/ngo/profile-251126181018liCCv.png" alt="شعار مبادرة رقيم">
             </div>
-            <div class="menu-toggle" id="mobile-menu">
-                <i class="fas fa-bars"></i>
-            </div>
-            <nav id="nav-menu">
+            <div class="menu-btn" id="menu-btn"><i class="fas fa-bars"></i></div>
+            <nav id="nav">
                 <ul>
                     <li><a href="#hero" class="nav-link">الرئيسية</a></li>
-                    <li><a href="#about" class="nav-link">رسالتنا وأهدافنا</a></li>
-                    <li><a href="#impact" class="nav-link">الأثر المجتمعي</a></li>
-                    <li><a href="#programs" class="nav-link">مسارات التمكين</a></li>
-                    <li><a href="#join" class="nav-btn nav-link">شاركنا الأثر</a></li>
+                    <li><a href="#about" class="nav-link">عن المبادرة</a></li>
+                    <li><a href="#ages" class="nav-link">الفئات المستهدفة</a></li>
+                    <li><a href="#tracks" class="nav-link">مسارات رقيم</a></li>
+                    <li><a href="#join" class="btn-nav nav-link">انضم إلينا</a></li>
                 </ul>
             </nav>
         </div>
@@ -171,83 +207,135 @@
     <section id="hero" class="hero">
         <div class="container">
             <div class="hero-content">
-                <span class="hero-tag">مبادرة وطنية لتنمية المهارات التقنية</span>
-                <h1>نبني قدرات شبابية<br>لريادة المستقبل الرقمي</h1>
-                <p>مبادرة "رقيم" هي منصتك نحو الاحتراف. نوفر بيئة حاضنة للابتكار التكنولوجي، وندرب على أحدث التقنيات العالمية لسد الفجوة الرقمية وخلق فرص تنموية مستدامة للشباب الأردني.</p>
-                <div class="hero-buttons">
-                    <a href="#join" class="btn btn-primary" onclick="document.getElementById('regType').value='متدرب'">سجل كمتدرب الآن</a>
+                <div class="badge"><i class="fas fa-bolt"></i> نطلق طاقات الشباب نحو المستقبل</div>
+                <h1>مبادرة <span>رقيم</span> التقنية</h1>
+                <p>نهدف إلى رفع الوعي الرقمي وتعزيز المهارات التكنولوجية لدى الشباب والمجتمع في المملكة الأردنية الهاشمية، لإحداث تغيير حقيقي ومستدام من خلال برامج متخصصة تواكب متطلبات العصر.</p>
+                <div class="hero-actions">
+                    <a href="#join" class="btn btn-primary" onclick="document.getElementById('regType').value='متدرب'">ابدأ رحلتك كمتدرب</a>
                     <a href="#join" class="btn btn-outline" onclick="document.getElementById('regType').value='مؤسسة او شريك محتمل'">عقد شراكة استراتيجية</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="about" class="about-section">
+    <section id="about">
         <div class="container">
             <div class="about-grid">
                 <div class="about-text reveal">
-                    <div class="section-header" style="margin-bottom: 30px;">
-                        <p>عن مبادرة رقيم</p>
-                        <h2 class="section-title">فلسفة التغيير والتطوير المستدام</h2>
+                    <div class="sec-title-wrapper" style="text-align: right; margin-bottom: 30px;">
+                        <span class="sec-subtitle">رؤيتنا ورسالتنا</span>
+                        <h2 class="sec-title">التكنولوجيا كأداة للتطوير المستدام</h2>
                     </div>
-                    <p>نسعى في <strong>مبادرة رقيم</strong> إلى أن نكون الوجهة الأولى في المملكة الأردنية الهاشمية لبناء جيل شبابي مُمَكّن تكنولوجياً، قادر على المنافسة عالمياً وابتكار حلول رقمية تخدم المجتمع وتدعم الاقتصاد المعرفي.</p>
-                    <p>نؤمن بأن التمكين التقني هو أداة التغيير الأقوى في عصرنا الحالي، ولذلك صممنا برامجنا لتدمج بين المعرفة النظرية والتطبيق العملي المكثف.</p>
-                    
-                    <div class="about-features">
-                        <div class="feature-item">
-                            <div class="feature-icon"><i class="fas fa-bullseye"></i></div>
-                            <div>
-                                <h4>رسالتنا</h4>
-                                <p>تقديم تدريب نوعي لسد الفجوة بين مخرجات التعليم واحتياجات سوق العمل الحديث.</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon"><i class="fas fa-handshake"></i></div>
-                            <div>
-                                <h4>قيمنا الأساسية</h4>
-                                <p>الابتكار، الشمولية، الاستدامة، والعمل التشاركي لتعظيم الأثر المجتمعي.</p>
-                            </div>
-                        </div>
-                    </div>
+                    <p class="lead">رقيم هي مبادرة تنموية تهدف إلى بناء القدرات وتعزيز المهارات التكنولوجية في الأردن.</p>
+                    <p>تسعى المبادرة إلى إحداث تغيير ملموس في المجتمع عبر توفير بيئة حاضنة للابتكار، وتقديم دورات نوعية تسد الفجوة بين المخرجات التعليمية والاحتياجات الفعلية لسوق العمل المتسارع.</p>
+                    <p>من خلال دمج المعرفة النظرية بالتطبيق العملي المكثف، نضمن حصول المشاركين على مهارات حقيقية قابلة للتنفيذ المباشر، ليكونوا قادة التغيير في مجتمعاتهم.</p>
                 </div>
                 <div class="about-image reveal" style="transition-delay: 0.2s;">
-                    <img src="https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?auto=format&fit=crop&q=80" alt="شباب يعملون على مشاريع تقنية">
+                    <img src="https://nahno-new.s3.eu-west-3.amazonaws.com/ngo/profile-251126181018liCCv.png">
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="impact" class="stats">
+    <section id="ages" class="age-section">
         <div class="container">
+            <div class="sec-title-wrapper reveal">
+                <span class="sec-subtitle">الشمولية في التدريب</span>
+                <h2 class="sec-title">الفئات العمرية المستهدفة</h2>
+            </div>
+            <div class="age-grid">
+                <div class="age-card reveal">
+                    <div class="icon"><i class="fas fa-child"></i></div>
+                    <h3>10 - 17</h3>
+                    <p>فئة اليافعين: التأسيس التقني واكتشاف الشغف التكنولوجي المبكر.</p>
+                </div>
+                <div class="age-card reveal" style="transition-delay: 0.1s;">
+                    <div class="icon"><i class="fas fa-user-graduate"></i></div>
+                    <h3>18 - 24</h3>
+                    <p>الشباب والجامعيين: التمكين المتقدم والجاهزية لسوق العمل الحديث.</p>
+                </div>
+                <div class="age-card reveal" style="transition-delay: 0.2s;">
+                    <div class="icon"><i class="fas fa-user-tie"></i></div>
+                    <h3>25 - 35</h3>
+                    <p>المهنيين الشباب: صقل المهارات، الابتكار، والريادة الرقمية.</p>
+                </div>
+                <div class="age-card reveal" style="transition-delay: 0.3s;">
+                    <div class="icon"><i class="fas fa-users"></i></div>
+                    <h3>36 - 55</h3>
+                    <p>التطوير المستمر: مواكبة التكنولوجيا والاندماج في الاقتصاد المعرفي.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tracks" class="tracks-section">
+        <div class="container">
+            <div class="sec-title-wrapper reveal">
+                <span class="sec-subtitle">هيكلية البرامج</span>
+                <h2 class="sec-title">مسارات رقيم الاستراتيجية</h2>
+            </div>
+            <div class="tracks-grid">
+                
+                <div class="track-card reveal">
+                    <div class="track-icon"><i class="fas fa-lightbulb"></i></div>
+                    <h3>مسار الوعي التقني</h3>
+                    <p>يهدف إلى نشر ثقافة التكنولوجيا وإبراز أهميتها في حياتنا اليومية. يركز المسار على بناء الإدراك حول <strong>أهمية التعلم التقني</strong>، وتوفير المعرفة الأساسية والأمور اللازمة <strong>لحماية البيانات</strong> والخصوصية في الفضاء الرقمي.</p>
+                    <div class="track-tags">
+                        <span>الثقافة الرقمية</span>
+                        <span>حماية الخصوصية</span>
+                    </div>
+                </div>
+
+                <div class="track-card reveal" style="transition-delay: 0.1s;">
+                    <div class="track-icon"><i class="fas fa-laptop-code"></i></div>
+                    <h3>مسار التمكين التقني</h3>
+                    <p>المسار المتقدم لبناء القدرات التقنية الصلبة. يشمل تعلم أحدث لغات <strong>البرمجة</strong>، واستكشاف تطبيقات <strong>الذكاء الاصطناعي (AI)</strong>، بالإضافة إلى التدريب على استراتيجيات وأدوات <strong>الأمن السيبراني</strong> المتقدمة.</p>
+                    <div class="track-tags">
+                        <span>البرمجة</span>
+                        <span>الذكاء الاصطناعي</span>
+                        <span>الأمن السيبراني</span>
+                    </div>
+                </div>
+
+                <div class="track-card reveal" style="transition-delay: 0.2s;">
+                    <div class="track-icon"><i class="fas fa-camera-retro"></i></div>
+                    <h3>مسار التصوير والإعلام الرقمي</h3>
+                    <p>مسار إبداعي متكامل يشمل أساسيات واحتراف <strong>تصوير الصور والفيديو</strong>، تقنيات <strong>المونتاج والتعديل</strong> المتقدمة، بالإضافة إلى إدارة وتجهيز <strong>البث المباشر (Live Streaming)</strong> وصناعة <strong>البودكاست</strong>.</p>
+                    <div class="track-tags">
+                        <span>تصوير ومونتاج</span>
+                        <span>بث مباشر</span>
+                        <span>بودكاست</span>
+                    </div>
+                </div>
+
+                <div class="track-card reveal" style="transition-delay: 0.3s;">
+                    <div class="track-icon"><i class="fas fa-briefcase"></i></div>
+                    <h3>مسار الجاهزية المهنية</h3>
+                    <p>تأهيل الشباب للاندماج السريع والفعال في سوق العمل. يشمل إتقان <strong>البرامج المكتبية والإدارية</strong>، تطوير المهارات الناعمة (Soft Skills)، بناء الهوية المهنية، وإدارة بيئات العمل الرقمية بنجاح.</p>
+                    <div class="track-tags">
+                        <span>برامج مكتبية</span>
+                        <span>مهارات العمل</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="impact" style="padding: 0 5%; margin-top: 80px;">
+        <div class="stats-section reveal">
             <div class="stats-grid">
-                <div class="stat-item reveal"><div class="stat-number" data-target="2650">0</div><div class="stat-title">شاب وشابة متقدمين للبرامج</div></div>
-                <div class="stat-item reveal" style="transition-delay: 0.1s;"><div class="stat-number" data-target="94">0</div><div class="stat-title">فرصة تدريبية مجتمعية مُنحت</div></div>
-                <div class="stat-item reveal" style="transition-delay: 0.2s;"><div class="stat-number" data-target="15814">0</div><div class="stat-title">ساعة تدريب وبناء قدرات</div></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="programs" class="programs">
-        <div class="container">
-            <div class="section-header text-center reveal">
-                <p>مساراتنا المنهجية</p>
-                <h2 class="section-title">برامج مصممة لمتطلبات الغد</h2>
-            </div>
-            <div class="programs-grid">
-                <div class="program-card reveal">
-                    <div class="p-icon"><i class="fas fa-microchip"></i></div>
-                    <h3>التمكين التقني</h3>
-                    <p>بناء أساس هندسي قوي يمتد من إتقان <strong>لغات البرمجة</strong> وتطوير النظم، وتوظيف <strong>الذكاء الاصطناعي</strong> في حل المشكلات، وصولاً إلى مبادئ <strong>الأمن السيبراني</strong> لحماية البيانات.</p>
+                <div class="stat-item">
+                    <div class="stat-num" data-target="2650">0</div>
+                    <div class="stat-text">شاب وشابة متقدمين</div>
                 </div>
-                <div class="program-card reveal" style="transition-delay: 0.1s;">
-                    <div class="p-icon"><i class="fas fa-object-group"></i></div>
-                    <h3>الإبداع الرقمي</h3>
-                    <p>برنامج متقدم لاكتشاف وصقل المواهب البصرية، يدمج بين علم <strong>التصميم الجرافيكي</strong> وبناء العلامات التجارية، وتقنيات <strong>مونتاج الفيديو</strong> المتطورة لإنتاج محتوى ذي أثر.</p>
+                <div class="stat-item">
+                    <div class="stat-num" data-target="94">0</div>
+                    <div class="stat-text">فرصة تدريبية مُنحت</div>
                 </div>
-                <div class="program-card reveal" style="transition-delay: 0.2s;">
-                    <div class="p-icon"><i class="fas fa-briefcase"></i></div>
-                    <h3>الجاهزية المهنية</h3>
-                    <p>مسار يهدف إلى تسريع اندماج الشباب في سوق العمل عبر إتقان <strong>برامج أوفيس (Office)</strong>، وتطوير المهارات الناعمة (Soft Skills)، وإدارة الأعمال رقمياً.</p>
+                <div class="stat-item">
+                    <div class="stat-num" data-target="15814">0</div>
+                    <div class="stat-text">ساعة تدريب وتطوير</div>
                 </div>
             </div>
         </div>
@@ -255,35 +343,35 @@
 
     <section id="join" class="join-section">
         <div class="container">
-            <div class="section-header text-center reveal">
-                <p>بوابة التسجيل والتواصل</p>
-                <h2 class="section-title">لنصنع الأثر معاً</h2>
+            <div class="sec-title-wrapper reveal">
+                <span class="sec-subtitle">بوابة التسجيل</span>
+                <h2 class="sec-title">لنصنع الأثر معاً</h2>
             </div>
             
-            <div class="form-wrapper reveal">
-                <div id="successMessage" class="success-message">
+            <div class="form-container reveal">
+                <div id="successMessage" class="success-msg">
                     <i class="fas fa-check-circle"></i>
                     <h3>تم استلام طلبك بنجاح</h3>
-                    <p>شكراً لاهتمامك بمبادرة رقيم. سيقوم فريقنا بمراجعة البيانات والتواصل معك في أقرب وقت ممكن.</p>
+                    <p>شكراً لاهتمامك بمبادرة رقيم. سيقوم فريقنا بمراجعة البيانات والتواصل معك قريباً.</p>
                 </div>
 
                 <form id="raqeemForm">
                     <div class="form-row">
-                        <div class="form-group">
+                        <div class="input-group">
                             <label>الاسم الكامل / اسم الجهة</label>
-                            <input type="text" name="name" class="form-control" placeholder="يرجى إدخال الاسم الرباعي أو اسم المؤسسة" required>
+                            <input type="text" name="name" class="form-control" placeholder="يرجى إدخال الاسم الرباعي" required>
                         </div>
-                        <div class="form-group">
+                        <div class="input-group">
                             <label>رقم هاتف التواصل</label>
                             <input type="tel" name="phone" class="form-control" placeholder="مثال: 0791087449" required>
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group">
+                        <div class="input-group">
                             <label>البريد الإلكتروني</label>
                             <input type="email" name="email" class="form-control" placeholder="example@domain.com" required>
                         </div>
-                        <div class="form-group">
+                        <div class="input-group">
                             <label>صفة مقدم الطلب</label>
                             <select name="type" id="regType" class="form-control" required>
                                 <option value="" disabled selected>يرجى اختيار صفتك الحالية...</option>
@@ -294,11 +382,11 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="input-group">
                         <label>تفاصيل الطلب أو الدافع للمشاركة</label>
-                        <textarea name="message" class="form-control" style="height: 140px; resize: vertical;" placeholder="يرجى كتابة نبذة عن سبب رغبتك في الانضمام، أو تفاصيل مقترح الشراكة الخاص بك..." required></textarea>
+                        <textarea name="message" class="form-control" style="height: 150px; resize: vertical;" placeholder="يرجى كتابة نبذة عن سبب رغبتك في الانضمام، المسار المفضل، أو تفاصيل الشراكة..." required></textarea>
                     </div>
-                    <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%; font-size: 1.2rem; margin-top: 10px;">
+                    <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%; justify-content: center; font-size: 1.25rem; margin-top: 10px; padding: 20px;">
                         إرسال الطلب واعتماده
                     </button>
                 </form>
@@ -310,29 +398,29 @@
         <div class="container">
             <div class="footer-grid">
                 <div>
-                    <div class="footer-logo">
+                    <div class="f-logo">
                         <img src="https://nahno-new.s3.eu-west-3.amazonaws.com/ngo/profile-251126181018liCCv.png" alt="شعار مبادرة رقيم">
-                        <p>مبادرة وطنية أردنية تهدف إلى بناء قدرات الشباب التقنية، تعزيز الابتكار، وتمهيد الطريق نحو اقتصاد معرفي مستدام.</p>
+                        <p>رقيم هي مبادرة تقنية تهدف إلى رفع الوعي الرقمي وتعزيز المهارات التكنولوجية لدى الشباب في الأردن لصناعة أثر مستدام.</p>
                     </div>
-                    <div class="social-links">
-                        <a href="https://www.instagram.com/raqeem_jo/" target="_blank" title="إنستغرام"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.facebook.com/people/%D9%85%D8%A8%D8%A7%D8%AF%D8%B1%D8%A9-%D8%B1%D9%82%D9%8A%D9%85/61577884989188/" target="_blank" title="فيسبوك"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.linkedin.com/in/baderhusban/" target="_blank" title="لينكد إن"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://www.nahno.org/ngo/%D9%85%D8%A8%D8%A7%D8%AF%D8%B1%D8%A9-%D8%B1%D9%82%D9%8A%D9%85-74875" target="_blank" title="منصة نحن"><i class="fas fa-hand-holding-heart"></i></a>
+                    <div class="socials">
+                        <a href="https://www.instagram.com/raqeem_jo/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/people/%D9%85%D8%A8%D8%A7%D8%AF%D8%B1%D8%A9-%D8%B1%D9%82%D9%8A%D9%85/61577884989188/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.linkedin.com/in/baderhusban/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.nahno.org/ngo/%D9%85%D8%A8%D8%A7%D8%AF%D8%B1%D8%A9-%D8%B1%D9%82%D9%8A%D9%85-74875" target="_blank"><i class="fas fa-hand-holding-heart"></i></a>
                     </div>
                 </div>
                 <div>
-                    <h4 class="footer-title">تصفح الموقع</h4>
-                    <ul class="footer-contact">
-                        <li><a href="#about">رسالتنا وأهدافنا</a></li>
-                        <li><a href="#impact">الأثر المجتمعي</a></li>
-                        <li><a href="#programs">مسارات التمكين التدريبية</a></li>
+                    <h4 class="f-title">تصفح الموقع</h4>
+                    <ul class="f-links">
+                        <li><a href="#about">عن المبادرة</a></li>
+                        <li><a href="#ages">الفئات المستهدفة</a></li>
+                        <li><a href="#tracks">مسارات رقيم</a></li>
                         <li><a href="#join">بوابة التسجيل</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="footer-title">معلومات الاتصال</h4>
-                    <ul class="footer-contact">
+                    <h4 class="f-title">معلومات الاتصال</h4>
+                    <ul class="f-contact">
                         <li><i class="fas fa-map-marker-alt"></i> <span>المفرق، المملكة الأردنية الهاشمية</span></li>
                         <li><i class="fas fa-phone"></i> <span dir="ltr">+962 7 9108 7449</span></li>
                         <li><i class="fas fa-envelope"></i> <span>baderahusban@gmail.com</span></li>
@@ -346,34 +434,37 @@
     </footer>
 
     <script>
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if(window.scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        });
+
         // Mobile Menu
-        const menuBtn = document.getElementById('mobile-menu');
-        const navMenu = document.getElementById('nav-menu');
-        const header = document.getElementById('main-header');
+        const menuBtn = document.getElementById('menu-btn');
+        const nav = document.getElementById('nav');
         const navLinks = document.querySelectorAll('.nav-link');
 
         menuBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            header.classList.toggle('menu-open');
-            menuBtn.innerHTML = navMenu.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            nav.classList.toggle('active');
+            menuBtn.innerHTML = nav.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
         });
-
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                header.classList.remove('menu-open');
+                nav.classList.remove('active');
                 menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
             });
         });
 
-        // Animated Counters
-        const counters = document.querySelectorAll('.stat-number');
+        // Number Counters
+        const counters = document.querySelectorAll('.stat-num');
         let hasCounted = false;
         const animateCounters = () => {
             counters.forEach(counter => {
                 const target = +counter.getAttribute('data-target');
                 const count = +counter.innerText;
-                const increment = target / 40;
+                const increment = target / 50;
                 if (count < target) {
                     counter.innerText = Math.ceil(count + increment);
                     setTimeout(animateCounters, 30);
@@ -383,23 +474,23 @@
             });
         };
 
-        // Scroll Animations
-        const revealElements = document.querySelectorAll('.reveal');
+        // Scroll Reveal Animation
+        const reveals = document.querySelectorAll('.reveal');
         const statsSection = document.getElementById('impact');
         const revealOnScroll = () => {
-            const windowHeight = window.innerHeight;
-            revealElements.forEach(el => {
-                if (el.getBoundingClientRect().top < windowHeight - 80) el.classList.add('active');
+            const wh = window.innerHeight;
+            reveals.forEach(el => {
+                if (el.getBoundingClientRect().top < wh - 100) el.classList.add('active');
             });
-            if (statsSection && statsSection.getBoundingClientRect().top < windowHeight - 50 && !hasCounted) {
+            if (statsSection && statsSection.getBoundingClientRect().top < wh - 50 && !hasCounted) {
                 animateCounters();
                 hasCounted = true;
             }
         };
         window.addEventListener('scroll', revealOnScroll);
-        revealOnScroll();
+        setTimeout(revealOnScroll, 100);
 
-        // Google Sheets Integration
+        // Google Sheets Form Submission
         const scriptURL = 'https://script.google.com/macros/s/AKfycbwkKoSvmXEKlt6vv7FsYQoBiuS3Ay6c9HcFTljN4cUgxVnXpm18wJcVwu-Uuq5EBDaL/exec';
         const form = document.getElementById('raqeemForm');
         const submitBtn = document.getElementById('submitBtn');
@@ -409,7 +500,7 @@
             e.preventDefault();
             
             submitBtn.disabled = true;
-            submitBtn.innerHTML = 'جاري الإرسال المأمون... <i class="fas fa-circle-notch fa-spin"></i>';
+            submitBtn.innerHTML = 'جاري الإرسال بأمان... <i class="fas fa-circle-notch fa-spin"></i>';
             submitBtn.style.opacity = '0.8';
 
             fetch(scriptURL, { method: 'POST', body: new FormData(form)})
