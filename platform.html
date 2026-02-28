@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أكاديمية رقيم الرقمية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            /* ألوان رقيم الرسمية */
+            --brand-dark: #161a34;      
+            --brand-accent: #78b8cf;    
+            --brand-accent-glow: rgba(120, 184, 207, 0.4); 
+            --brand-white: #ffffff;     
+            --bg-page: #f4f7fb;         
+            --surface: #ffffff;         
+            --text-main: #161a34;       
+            --text-muted: #64748B;
+            --border-soft: #E2E8F0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+        body { background-color: var(--bg-page); color: var(--text-main); line-height: 1.7; overflow-x: hidden; }
+
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 5%; }
+
+        /* ================= Header ================= */
+        header { position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px); z-index: 1000; padding: 12px 0; border-bottom: 2px solid var(--border-soft); box-shadow: 0 4px 20px rgba(22, 26, 52, 0.05); }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo img { height: 50px; }
+        
+        .btn-back { background: var(--brand-dark); color: var(--brand-white); padding: 8px 24px; border-radius: 8px; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 8px; transition: all 0.3s; font-size: 0.95rem; }
+        .btn-back:hover { background: var(--brand-accent); color: var(--brand-dark); transform: translateX(-5px); }
+
+        /* ================= Cinematic Hero (Featured Course) ================= */
+        .lms-hero { padding-top: 100px; background: var(--brand-dark); position: relative; overflow: hidden; min-height: 70vh; display: flex; align-items: center; }
+        /* سيتم إضافة الخلفية برمجياً للفيديو الأحدث */
+        .hero-backdrop { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.3; filter: blur(10px) brightness(0.5); z-index: 0; transition: all 1s ease; }
+        .hero-gradient { position: absolute; inset: 0; background: linear-gradient(90deg, var(--brand-dark) 20%, rgba(22, 26, 52, 0.8) 50%, transparent 100%); z-index: 1; }
+        
+        .hero-content { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; width: 100%; padding: 40px 0; }
+        .hero-info { color: var(--brand-white); }
+        .hero-badge { display: inline-block; background: rgba(120, 184, 207, 0.2); color: var(--brand-accent); padding: 6px 16px; border-radius: 6px; font-weight: 800; font-size: 0.9rem; margin-bottom: 20px; border: 1px solid rgba(120, 184, 207, 0.4); }
+        .hero-title { font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 900; line-height: 1.3; margin-bottom: 20px; }
+        .hero-meta { display: flex; gap: 20px; color: #CBD5E1; font-size: 1rem; margin-bottom: 30px; font-weight: 600; }
+        .hero-meta span { display: flex; align-items: center; gap: 8px; }
+        .hero-meta i { color: var(--brand-accent); }
+        
+        .btn-play-hero { background: var(--brand-accent); color: var(--brand-dark); border: none; padding: 16px 40px; border-radius: 12px; font-size: 1.2rem; font-weight: 900; cursor: pointer; display: inline-flex; align-items: center; gap: 12px; transition: all 0.3s; box-shadow: 0 10px 30px var(--brand-accent-glow); }
+        .btn-play-hero:hover { transform: translateY(-5px); filter: brightness(1.1); }
+        
+        .hero-visual { position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); cursor: pointer; aspect-ratio: 16/9; }
+        .hero-visual img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s; }
+        .hero-visual:hover img { transform: scale(1.05); }
+        .play-ring { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(22, 26, 52, 0.4); transition: all 0.3s; }
+        .play-ring i { font-size: 4rem; color: var(--brand-white); text-shadow: 0 10px 20px rgba(0,0,0,0.5); transition: transform 0.3s; }
+        .hero-visual:hover .play-ring i { transform: scale(1.1); color: var(--brand-accent); }
+
+        /* ================= Smart Filters ================= */
+        .filters-section { padding: 40px 0; background: var(--surface); border-bottom: 1px solid var(--border-soft); position: sticky; top: 75px; z-index: 99; }
+        .filters-container { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; }
+        .filters-container::-webkit-scrollbar { display: none; }
+        .filter-btn { background: var(--bg-page); border: 1px solid var(--border-soft); color: var(--text-muted); padding: 10px 24px; border-radius: 50px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: all 0.3s; white-space: nowrap; }
+        .filter-btn:hover { border-color: var(--brand-accent); color: var(--brand-dark); }
+        .filter-btn.active { background: var(--brand-dark); color: var(--brand-white); border-color: var(--brand-dark); box-shadow: 0 4px 15px rgba(22, 26, 52, 0.2); }
+
+        /* ================= Courses Grid ================= */
+        .courses-section { padding: 60px 0 100px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 35px; }
+        
+        .course-card { background: var(--surface); border-radius: 20px; overflow: hidden; box-shadow: 0 10px 20px rgba(22, 26, 52, 0.03); border: 1px solid var(--border-soft); transition: all 0.4s ease; cursor: pointer; display: flex; flex-direction: column; }
+        .course-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(22, 26, 52, 0.08); border-color: var(--brand-accent); }
+        
+        .course-thumb { position: relative; width: 100%; padding-top: 56.25%; overflow: hidden; background: var(--brand-dark); }
+        .course-thumb img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .course-card:hover .course-thumb img { transform: scale(1.08); }
+        
+        .thumb-overlay { position: absolute; inset: 0; background: rgba(22, 26, 52, 0.2); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; backdrop-filter: blur(2px); }
+        .course-card:hover .thumb-overlay { opacity: 1; }
+        .thumb-overlay i { font-size: 3.5rem; color: var(--brand-accent); transform: scale(0.8); transition: transform 0.3s; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3)); }
+        .course-card:hover .thumb-overlay i { transform: scale(1); }
+        
+        .track-tag { position: absolute; top: 15px; right: 15px; background: var(--brand-white); color: var(--brand-dark); padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 800; z-index: 2; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-right: 3px solid var(--brand-accent); }
+        
+        .course-info { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
+        .course-title { font-size: 1.15rem; font-weight: 800; color: var(--brand-dark); margin-bottom: 15px; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        
+        .course-meta-bottom { display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 15px; border-top: 1px solid var(--bg-page); }
+        .instructor { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; font-weight: 700; color: var(--text-muted); }
+        .instructor img { width: 30px; height: 30px; border-radius: 50%; background: var(--bg-page); padding: 2px; }
+        .free-badge { color: var(--brand-accent); font-weight: 800; font-size: 0.95rem; }
+
+        /* ================= Skeleton Loader (Premium Feel) ================= */
+        .skeleton { background: #e2e8f0; border-radius: 8px; animation: pulse 1.5s infinite ease-in-out; }
+        @keyframes pulse { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }
+        .sk-card { background: var(--surface); border-radius: 20px; overflow: hidden; border: 1px solid var(--border-soft); }
+        .sk-thumb { height: 200px; width: 100%; border-radius: 0; }
+        .sk-text { height: 20px; margin: 20px; width: 80%; }
+        .sk-text.short { width: 50%; }
+
+        /* ================= Modal Player ================= */
+        .modal { display: none; position: fixed; inset: 0; background: rgba(22, 26, 52, 0.98); backdrop-filter: blur(10px); z-index: 2000; align-items: center; justify-content: center; padding: 20px; opacity: 0; transition: opacity 0.4s ease; }
+        .modal.active { display: flex; opacity: 1; }
+        .modal-content { position: relative; width: 100%; max-width: 1100px; background: #000; border-radius: 24px; overflow: hidden; box-shadow: 0 25px 60px rgba(0,0,0,0.6); aspect-ratio: 16/9; transform: scale(0.95); transition: transform 0.4s; border: 1px solid rgba(120, 184, 207, 0.2); }
+        .modal.active .modal-content { transform: scale(1); }
+        .modal iframe { width: 100%; height: 100%; border: none; }
+        .close-modal { position: absolute; top: -50px; left: 0; background: transparent; border: none; color: #fff; font-size: 2rem; cursor: pointer; transition: color 0.3s; }
+        .close-modal:hover { color: var(--brand-accent); }
+
+        @media (max-width: 992px) {
+            .hero-content { grid-template-columns: 1fr; text-align: center; }
+            .hero-gradient { background: linear-gradient(180deg, rgba(22, 26, 52, 0.9) 30%, var(--brand-dark) 100%); }
+            .hero-meta { justify-content: center; }
+        }
+        @media (max-width: 768px) {
+            .lms-hero { padding-top: 120px; min-height: auto; }
+            .close-modal { top: -45px; right: 0; left: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <img src="https://nahno-new.s3.eu-west-3.amazonaws.com/ngo/profile-251126181018liCCv.png" alt="شعار رقيم">
+            </div>
+            <a href="index.html" class="btn-back">
+                العودة <i class="fas fa-arrow-left"></i>
+            </a>
+        </div>
+    </header>
+
+    <section class="lms-hero" id="hero-section">
+        <div class="container" id="hero-loader" style="width: 100%; height: 400px; display: flex; align-items: center; justify-content: center;">
+            <div style="text-align: center; color: var(--brand-accent); font-size: 1.5rem; font-weight: bold;">
+                <i class="fas fa-spinner fa-spin"></i> جاري تهيئة الأكاديمية...
+            </div>
+        </div>
+    </section>
+
+    <div class="filters-section">
+        <div class="container filters-container" id="filter-buttons">
+            <button class="filter-btn active" data-filter="all">جميع المسارات</button>
+            <button class="filter-btn" data-filter="tech">التمكين التقني (AI & Cyber)</button>
+            <button class="filter-btn" data-filter="media">التصوير والإعلام</button>
+            <button class="filter-btn" data-filter="career">الجاهزية المهنية</button>
+            <button class="filter-btn" data-filter="awareness">الوعي التقني</button>
+        </div>
+    </div>
+
+    <section class="courses-section">
+        <div class="container">
+            <div class="grid" id="grid-loader">
+                <div class="sk-card"><div class="skeleton sk-thumb"></div><div class="skeleton sk-text"></div><div class="skeleton sk-text short"></div></div>
+                <div class="sk-card"><div class="skeleton sk-thumb"></div><div class="skeleton sk-text"></div><div class="skeleton sk-text short"></div></div>
+                <div class="sk-card"><div class="skeleton sk-thumb"></div><div class="skeleton sk-text"></div><div class="skeleton sk-text short"></div></div>
+            </div>
+            
+            <div class="grid" id="video-grid" style="display: none;"></div>
+            
+            <div id="no-results" style="display: none; text-align: center; padding: 50px; color: var(--text-muted); font-size: 1.2rem; font-weight: 700;">
+                <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 15px; color: var(--border-soft);"></i><br>
+                لا توجد دورات حالية في هذا المسار. سيتم إضافتها قريباً!
+            </div>
+        </div>
+    </section>
+
+    <div id="videoModal" class="modal">
+        <div style="position: relative; width: 100%; max-width: 1100px;">
+            <button class="close-modal" id="closeModal"><i class="fas fa-times"></i></button>
+            <div class="modal-content">
+                <iframe id="youtubePlayer" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const CHANNEL_IDS = [
+            'UCbqeKiSOC9TedGQ-stt_2nw', // Raqeem Live
+            'UCIdL3ni3y02jhIsLO7Rjc2A'  // raqeem
+        ];
+
+        const heroSection = document.getElementById('hero-section');
+        const heroLoader = document.getElementById('hero-loader');
+        const gridLoader = document.getElementById('grid-loader');
+        const videoGrid = document.getElementById('video-grid');
+        const noResults = document.getElementById('no-results');
+        
+        let allCourses = []; // لتخزين الكورسات للفلترة
+
+        // =========================================================
+        // خوارزمية الذكاء الاصطناعي المبسطة (التصنيف حسب العنوان)
+        // =========================================================
+        function categorizeVideo(title) {
+            const t = title.toLowerCase();
+            if (t.includes('برمج') || t.includes('سيبران') || t.includes('ذكاء') || t.includes('تطبيق') || t.includes('هاكر') || t.includes('امن')) return 'tech';
+            if (t.includes('تصوير') || t.includes('مونتاج') || t.includes('تصميم') || t.includes('بودكاست') || t.includes('فيديو') || t.includes('بث')) return 'media';
+            if (t.includes('اوفيس') || t.includes('عمل') || t.includes('مهني') || t.includes('سيرة') || t.includes('مقابلة')) return 'career';
+            if (t.includes('وعي') || t.includes('حماية') || t.includes('بيانات') || t.includes('خصوصية')) return 'awareness';
+            return 'general'; // للفعاليات العامة
+        }
+
+        function getCategoryName(catCode) {
+            const names = { 'tech': 'تمكين تقني', 'media': 'إعلام رقمي', 'career': 'جاهزية مهنية', 'awareness': 'وعي تقني', 'general': 'ورشة عامة' };
+            return names[catCode] || 'دورة تدريبية';
+        }
+
+        async function fetchVideos() {
+            try {
+                const fetchPromises = CHANNEL_IDS.map(id => {
+                    const rssUrl = encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${id}`);
+                    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`;
+                    return fetch(apiUrl).then(res => res.json());
+                });
+
+                const results = await Promise.all(fetchPromises);
+                
+                results.forEach(data => {
+                    if(data.status === 'ok') {
+                        const itemsWithCategory = data.items.map(item => ({
+                            ...item,
+                            category: categorizeVideo(item.title),
+                            catName: getCategoryName(categorizeVideo(item.title))
+                        }));
+                        allCourses = [...allCourses, ...itemsWithCategory];
+                    }
+                });
+
+                if(allCourses.length > 0) {
+                    allCourses.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+                    
+                    // إخفاء مؤشرات التحميل
+                    heroLoader.style.display = 'none';
+                    gridLoader.style.display = 'none';
+                    videoGrid.style.display = 'grid';
+                    
+                    // بناء الواجهة
+                    renderFeatured(allCourses[0]);
+                    renderGrid(allCourses.slice(1)); 
+                }
+                
+            } catch (error) {
+                console.error(error);
+                heroLoader.innerHTML = '<span style="color:#ef4444">حدث خطأ في الاتصال بخوادم الأكاديمية.</span>';
+            }
+        }
+
+        // 1. بناء الكورس الرئيسي (Hero)
+        function renderFeatured(video) {
+            const videoId = video.link.split('v=')[1];
+            const publishDate = new Date(video.pubDate).toLocaleDateString('ar-JO', { year: 'numeric', month: 'long', day: 'numeric' });
+            const highResThumb = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+
+            heroSection.innerHTML = `
+                <div class="hero-backdrop" style="background-image: url('${highResThumb}')"></div>
+                <div class="hero-gradient"></div>
+                <div class="container hero-content">
+                    <div class="hero-info">
+                        <div class="hero-badge"><i class="fas fa-fire"></i> أحدث إصدارات الأكاديمية</div>
+                        <h1 class="hero-title">${video.title}</h1>
+                        <div class="hero-meta">
+                            <span><i class="fas fa-layer-group"></i> مسار: ${video.catName}</span>
+                            <span><i class="far fa-calendar-check"></i> ${publishDate}</span>
+                            <span><i class="fas fa-signal"></i> جميع المستويات</span>
+                        </div>
+                        <button class="btn-play-hero" onclick="openVideo('${videoId}')">
+                            <i class="fas fa-play"></i> ابدأ حضور الدورة
+                        </button>
+                    </div>
+                    <div class="hero-visual" onclick="openVideo('${videoId}')">
+                        <img src="${highResThumb}" onerror="this.src='${video.thumbnail}'" alt="غلاف الدورة">
+                        <div class="play-ring"><i class="fas fa-play-circle"></i></div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // 2. بناء شبكة الكورسات
+        function renderGrid(videosToShow) {
+            if(videosToShow.length === 0) {
+                videoGrid.style.display = 'none';
+                noResults.style.display = 'block';
+                return;
+            }
+            
+            videoGrid.style.display = 'grid';
+            noResults.style.display = 'none';
+            let html = '';
+            
+            videosToShow.forEach(video => {
+                const videoId = video.link.split('v=')[1];
+                const highResThumb = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+
+                html += `
+                    <div class="course-card" onclick="openVideo('${videoId}')">
+                        <div class="course-thumb">
+                            <div class="track-tag">${video.catName}</div>
+                            <img src="${highResThumb}" onerror="this.src='${video.thumbnail}'" alt="${video.title}">
+                            <div class="thumb-overlay"><i class="fas fa-play-circle"></i></div>
+                        </div>
+                        <div class="course-info">
+                            <h3 class="course-title">${video.title}</h3>
+                            <div class="course-meta-bottom">
+                                <div class="instructor">
+                                    <img src="https://nahno-new.s3.eu-west-3.amazonaws.com/ngo/profile-251126181018liCCv.png" alt="Raqeem">
+                                    <span>أكاديمية رقيم</span>
+                                </div>
+                                <div class="free-badge">دورة مجانية</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            videoGrid.innerHTML = html;
+        }
+
+        // 3. نظام الفلترة
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                // تغيير شكل الزر النشط
+                filterBtns.forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                
+                // تصفية المصفوفة
+                const filterValue = e.target.getAttribute('data-filter');
+                let filteredCourses = allCourses.slice(1); // نستثني الكورس الرئيسي دائماً
+                
+                if(filterValue !== 'all') {
+                    filteredCourses = filteredCourses.filter(video => video.category === filterValue);
+                }
+                
+                // إعادة رسم الشبكة (مع تأثير خفيف)
+                videoGrid.style.opacity = '0';
+                setTimeout(() => {
+                    renderGrid(filteredCourses);
+                    videoGrid.style.opacity = '1';
+                }, 200);
+            });
+        });
+
+        // 4. مشغل الفيديو
+        const modal = document.getElementById('videoModal');
+        const closeModalBtn = document.getElementById('closeModal');
+        const youtubePlayer = document.getElementById('youtubePlayer');
+
+        window.openVideo = function(videoId) {
+            youtubePlayer.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeVideo() {
+            youtubePlayer.src = ''; 
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto'; 
+        }
+
+        closeModalBtn.addEventListener('click', closeVideo);
+        modal.addEventListener('click', (e) => { if(e.target === modal) closeVideo(); });
+        document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && modal.classList.contains('active')) closeVideo(); });
+
+        // بدء التنفيذ
+        fetchVideos();
+    </script>
+</body>
+</html>
