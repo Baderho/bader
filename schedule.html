@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>جدول الدورات القادمة لرقيم</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #020617;
+            --raqeem-blue: #1e3c72;
+            --raqeem-orange: #ff9800;
+            --neon-blue: #00f3ff;
+            --card-bg: rgba(15, 23, 42, 0.5);
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tajawal', sans-serif; }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* شبكة الخلفية */
+        #networkCanvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2; pointer-events: none; display: block;
+        }
+
+        .ambient-glow {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; pointer-events: none;
+            background: radial-gradient(circle at 15% 20%, rgba(30, 60, 114, 0.2) 0%, transparent 40%),
+                        radial-gradient(circle at 85% 80%, rgba(255, 152, 0, 0.1) 0%, transparent 40%);
+            animation: pulseGlow 12s ease-in-out infinite alternate;
+        }
+        @keyframes pulseGlow { 100% { opacity: 0.5; } }
+
+        /* الترويسة */
+        header {
+            width: 100%; max-width: 1200px;
+            padding: 20px 5%; 
+            display: flex; justify-content: center; align-items: center;
+            position: relative; z-index: 10;
+        }
+
+        .brand { display: flex; align-items: center; gap: 15px; justify-content: center; }
+        .brand img { height: 55px; filter: drop-shadow(0 0 10px rgba(255,152,0,0.4)); }
+        .brand h1 { 
+            font-size: 28px; font-weight: 900; margin: 0;
+            background: linear-gradient(135deg, #fff 0%, var(--raqeem-orange) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
+        }
+
+        /* الحاوية الرئيسية */
+        .container { 
+            width: 100%; max-width: 1200px; 
+            margin: 20px auto 60px; padding: 0 20px; 
+            position: relative; z-index: 10;
+            display: flex; flex-direction: column; align-items: center;
+        }
+        
+        .main-title {
+            text-align: center; font-size: 36px; font-weight: 900; margin-bottom: 50px;
+            color: #fff; text-shadow: 0 5px 20px rgba(30, 60, 114, 0.9);
+            display: flex; flex-direction: column; align-items: center; width: 100%;
+        }
+        .main-title::after {
+            content: ''; margin-top: 15px;
+            width: 60px; height: 4px; background: var(--neon-blue); border-radius: 2px;
+            box-shadow: 0 0 10px var(--neon-blue); animation: widthPulse 3s infinite alternate;
+        }
+        @keyframes widthPulse { 100% { width: 100px; } }
+
+        /* الشبكة والبطاقات */
+        .courses-grid { 
+            width: 100%;
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 30px; 
+            perspective: 1200px;
+        }
+        
+        .holo-card {
+            background: var(--card-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px; padding: 30px;
+            position: relative; transform-style: preserve-3d;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.2s ease-out, box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            will-change: transform;
+        }
+        
+        @media (hover: hover) and (pointer: fine) {
+            .holo-card::before {
+                content: ''; position: absolute; inset: 0; border-radius: 20px; z-index: 0;
+                background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(255, 152, 0, 0.1), transparent 40%);
+                opacity: 0; transition: opacity 0.3s ease; pointer-events: none;
+            }
+            .holo-card::after {
+                content: ''; position: absolute; inset: -1px; border-radius: 21px; z-index: -1;
+                background: radial-gradient(300px circle at var(--mouse-x) var(--mouse-y), var(--raqeem-orange), transparent 40%);
+                opacity: 0; transition: opacity 0.3s ease;
+            }
+            .holo-card:hover::before, .holo-card:hover::after { opacity: 1; }
+            .holo-card:hover { box-shadow: 0 20px 40px rgba(255, 152, 0, 0.1); }
+        }
+        
+        .card-content { position: relative; z-index: 1; pointer-events: auto; }
+        
+        .c-title { font-size: 22px; font-weight: 900; color: #fff; margin-bottom: 20px; line-height: 1.4; }
+        .c-info { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; color: var(--text-dim); font-size: 15px; }
+        .icon-wrap {
+            width: 35px; height: 35px; border-radius: 10px; background: rgba(30, 60, 114, 0.4);
+            display: flex; justify-content: center; align-items: center;
+            border: 1px solid rgba(255,255,255,0.05); flex-shrink: 0;
+        }
+        .icon-wrap svg { width: 18px; height: 18px; fill: var(--raqeem-orange); }
+
+        .btn-wa {
+            display: flex; justify-content: center; align-items: center; width: 100%;
+            background: linear-gradient(90deg, #1e3c72, #2a5298);
+            border: 1px solid rgba(255,152,0,0.3); color: #fff; padding: 14px; border-radius: 12px;
+            text-decoration: none; font-weight: 700; font-size: 15px; margin-top: 25px;
+            transition: all 0.3s ease;
+        }
+        .btn-wa:hover { 
+            background: var(--raqeem-orange); border-color: var(--raqeem-orange); color: #000;
+            box-shadow: 0 10px 20px rgba(255,152,0,0.3); transform: scale(1.02); 
+        }
+
+        /* تعديلات الشاشات الصغيرة (الهواتف) */
+        @media (max-width: 768px) { 
+            .main-title { font-size: 26px; margin-bottom: 40px; } 
+            .brand h1 { font-size: 22px; }
+            .brand img { height: 45px; }
+            .holo-card { padding: 20px; }
+            .c-title { font-size: 18px; }
+            .holo-card:hover { transform: none !important; box-shadow: 0 10px 20px rgba(0,0,0,0.3) !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="networkCanvas"></canvas>
+    <div class="ambient-glow"></div>
+
+    <header>
+        <div class="brand">
+            <img src="https://nahno-new.s3.eu-west-3.amazonaws.com/ngo/profile-251126181018liCCv.png" alt="شعار رقيم">
+            <h1>جدول الدورات القادمة لرقيم</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2 class="main-title">البرامج والورشات التدريبية</h2>
+        <div class="courses-grid" id="publicCoursesList"></div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('networkCanvas');
+        const ctx = canvas.getContext('2d');
+        let width, height, particles = [];
+        let isMobile = window.innerWidth <= 768;
+
+        function resizeCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            isMobile = window.innerWidth <= 768;
+            initParticles(); 
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        let mouse = { x: null, y: null, radius: 100 };
+        if (!isMobile) {
+            window.addEventListener('mousemove', (e) => { mouse.x = e.x; mouse.y = e.y; });
+            window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width; this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 1; this.vy = (Math.random() - 0.5) * 1;
+                this.size = Math.random() * 1.5 + 0.5;
+            }
+            update() {
+                if (this.x > width || this.x < 0) this.vx = -this.vx;
+                if (this.y > height || this.y < 0) this.vy = -this.vy;
+                this.x += this.vx; this.y += this.vy;
+
+                if (!isMobile && mouse.x != null) {
+                    let dx = mouse.x - this.x; let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < mouse.radius) {
+                        this.x -= dx / 15; this.y -= dy / 15;
+                    }
+                }
+            }
+            draw() {
+                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255, 152, 0, 0.4)'; ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            let density = isMobile ? 30000 : 15000; 
+            let particleCount = (width * height) / density; 
+            for (let i = 0; i < particleCount; i++) particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, width, height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update(); particles[i].draw();
+                let maxDist = isMobile ? 80 : 120;
+                for (let j = i; j < particles.length; j++) {
+                    let dx = particles[i].x - particles[j].x;
+                    let dy = particles[i].y - particles[j].y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < maxDist) {
+                        ctx.beginPath(); 
+                        ctx.strokeStyle = `rgba(0, 243, 255, ${0.15 - distance/maxDist})`;
+                        ctx.lineWidth = 0.5; 
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y); 
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animateParticles);
+        }
+        initParticles(); animateParticles();
+
+
+        const courses = JSON.parse(localStorage.getItem('raqeem_master_db')) || [];
+        const pubList = document.getElementById('publicCoursesList');
+
+        const icons = {
+            date: `<svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>`,
+            time: `<svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>`,
+            loc: `<svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>`
+        };
+
+        if(!courses.length) {
+            pubList.innerHTML = `<p style="grid-column:1/-1; text-align:center; color:#94a3b8; font-size:18px; padding:40px;">سيتم إدراج الدورات قريباً...</p>`;
+        } else {
+            courses.forEach((c) => {
+                const card = document.createElement('div');
+                card.className = 'holo-card';
+
+                card.innerHTML = `
+                    <div class="card-content">
+                        <h3 class="c-title">${c.name}</h3>
+                        <div class="c-info"><div class="icon-wrap">${icons.date}</div> <span>${c.date}</span></div>
+                        <div class="c-info"><div class="icon-wrap">${icons.time}</div> <span>${c.time}</span></div>
+                        <div class="c-info"><div class="icon-wrap">${icons.loc}</div> <span>${c.loc}</span></div>
+                        <a href="${c.wa}" target="_blank" class="btn-wa">التسجيل والتفاصيل</a>
+                    </div>
+                `;
+                pubList.appendChild(card);
+
+                if (!isMobile) {
+                    card.addEventListener('mousemove', e => {
+                        const rect = card.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        
+                        card.style.setProperty('--mouse-x', `${x}px`);
+                        card.style.setProperty('--mouse-y', `${y}px`);
+
+                        const centerX = rect.width / 2;
+                        const centerY = rect.height / 2;
+                        const rotateX = ((y - centerY) / centerY) * -6; 
+                        const rotateY = ((x - centerX) / centerX) * 6;
+                        
+                        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                    });
+
+                    card.addEventListener('mouseleave', () => {
+                        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+</html>

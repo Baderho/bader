@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>بوابة الإدارة | رقيم</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #020617;
+            --raqeem-blue: #1e3c72;
+            --raqeem-orange: #ff9800;
+            --neon-blue: #00f3ff;
+            --card-bg: rgba(15, 23, 42, 0.6);
+            --danger: #ef4444;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tajawal', sans-serif; }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-image: radial-gradient(circle at 50% 0%, rgba(30, 60, 114, 0.3) 0%, transparent 50%);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* شاشة القفل (Lock Screen) */
+        .lock-screen {
+            position: fixed; inset: 0; z-index: 1000;
+            background: rgba(2, 6, 23, 0.85); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            display: flex; justify-content: center; align-items: center; padding: 20px;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        .lock-box {
+            background: var(--card-bg); border: 1px solid rgba(255, 152, 0, 0.3);
+            padding: 40px; border-radius: 24px; text-align: center; width: 100%; max-width: 400px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.05);
+        }
+        .lock-box h2 { color: var(--raqeem-orange); margin-bottom: 25px; font-weight: 900; }
+        .lock-box input {
+            width: 100%; padding: 15px; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
+            background: rgba(0,0,0,0.4); color: #fff; font-size: 20px; text-align: center;
+            letter-spacing: 5px; margin-bottom: 25px; outline: none; transition: 0.3s;
+        }
+        .lock-box input:focus { border-color: var(--raqeem-orange); box-shadow: 0 0 15px rgba(255, 152, 0, 0.2); }
+        .btn-auth {
+            background: linear-gradient(90deg, #1e3c72, #2a5298); color: #fff; border: none;
+            padding: 15px; width: 100%; border-radius: 12px; font-weight: 900; font-size: 16px;
+            cursor: pointer; transition: 0.3s;
+        }
+        .btn-auth:hover { background: var(--raqeem-orange); color: #000; box-shadow: 0 10px 20px rgba(255,152,0,0.3); }
+
+        /* الحاوية الرئيسية للإدارة */
+        .admin-container {
+            width: 100%; max-width: 900px; padding: 40px 20px;
+            display: none; /* مخفية حتى يتم تسجيل الدخول */
+            flex-direction: column; align-items: center;
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        header { text-align: center; margin-bottom: 40px; width: 100%; }
+        header h1 { font-size: 32px; font-weight: 900; color: #fff; text-shadow: 0 5px 15px rgba(30, 60, 114, 0.8); margin-bottom: 10px; }
+        .back-link { color: var(--neon-blue); text-decoration: none; font-size: 15px; display: inline-flex; align-items: center; gap: 5px; transition: 0.3s; }
+        .back-link:hover { color: var(--raqeem-orange); }
+
+        /* نموذج الإضافة */
+        .admin-form {
+            background: var(--card-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            padding: 35px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.05);
+            width: 100%; margin-bottom: 50px; box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .full-width { grid-column: 1 / -1; }
+        .input-group label { display: block; margin-bottom: 8px; color: var(--text-dim); font-size: 14px; font-weight: 700; }
+        .input-group input {
+            width: 100%; padding: 14px; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
+            background: rgba(0,0,0,0.3); color: #fff; font-size: 15px; outline: none; transition: 0.3s;
+        }
+        .input-group input:focus { border-color: var(--raqeem-orange); background: rgba(0,0,0,0.5); }
+        .btn-submit {
+            background: var(--raqeem-orange); color: #000; border: none; padding: 16px; border-radius: 12px;
+            font-weight: 900; font-size: 16px; cursor: pointer; width: 100%; transition: 0.3s; margin-top: 10px;
+        }
+        .btn-submit:hover { background: #ffaa33; box-shadow: 0 10px 25px rgba(255,152,0,0.4); transform: translateY(-2px); }
+
+        /* قائمة الدورات الفعالة */
+        .section-title { width: 100%; color: var(--raqeem-orange); margin-bottom: 20px; font-size: 22px; font-weight: 900; border-bottom: 1px solid rgba(255,152,0,0.2); padding-bottom: 10px; }
+        .courses-list { width: 100%; display: flex; flex-direction: column; gap: 15px; }
+        .list-item {
+            background: rgba(30, 60, 114, 0.2); border: 1px solid rgba(30, 60, 114, 0.5);
+            padding: 20px; border-radius: 16px; display: flex; justify-content: space-between; align-items: center;
+            transition: 0.3s;
+        }
+        .list-item:hover { background: rgba(30, 60, 114, 0.4); border-color: var(--raqeem-blue); }
+        .item-info h3 { color: #fff; margin-bottom: 8px; font-size: 18px; font-weight: 800; }
+        .item-info p { color: var(--text-dim); font-size: 14px; display: flex; flex-wrap: wrap; gap: 15px; }
+        
+        .btn-del {
+            background: rgba(239, 68, 68, 0.1); color: var(--danger); border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 10px 20px; border-radius: 10px; cursor: pointer; font-weight: 700; transition: 0.3s; flex-shrink: 0;
+        }
+        .btn-del:hover { background: var(--danger); color: #fff; box-shadow: 0 5px 15px rgba(239, 68, 68, 0.4); }
+
+        @media (max-width: 768px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .list-item { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .btn-del { width: 100%; text-align: center; }
+            .item-info p { flex-direction: column; gap: 5px; }
+            header h1 { font-size: 26px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="lock-screen" id="lockScreen">
+        <div class="lock-box">
+            <h2>منطقة إدارية 🔒</h2>
+            <p style="color: var(--text-dim); margin-bottom: 20px; font-size: 14px;">أدخل رمز المرور السري للوصول للوحة التحكم</p>
+            <input type="password" id="adminPass" placeholder="••••••••" onkeypress="if(event.key === 'Enter') checkPass()">
+            <button class="btn-auth" onclick="checkPass()">التحقق والدخول</button>
+        </div>
+    </div>
+
+    <div class="admin-container" id="adminPanel">
+        <header>
+            <h1>إدارة جدول دورات رقيم</h1>
+            <a href="schedule.html" class="back-link">← العودة لواجهة الجمهور (الموقع الرئيسي)</a>
+        </header>
+
+        <form class="admin-form" id="courseForm" onsubmit="addCourse(event)">
+            <div class="form-grid">
+                <div class="input-group full-width">
+                    <label>اسم الدورة / الورشة</label>
+                    <input type="text" id="cName" required placeholder="مثال: أساسيات الذكاء الاصطناعي">
+                </div>
+                <div class="input-group">
+                    <label>تاريخ الانعقاد</label>
+                    <input type="text" id="cDate" required placeholder="مثال: السبت 15 أكتوبر">
+                </div>
+                <div class="input-group">
+                    <label>وقت الانعقاد</label>
+                    <input type="text" id="cTime" required placeholder="مثال: 5:00 مساءً">
+                </div>
+                <div class="input-group full-width">
+                    <label>المكان أو المنصة</label>
+                    <input type="text" id="cLocation" required placeholder="مثال: مقر المبادرة - المفرق / أونلاين عبر زووم">
+                </div>
+                <div class="input-group full-width">
+                    <label>رابط مجموعة الواتساب للتسجيل</label>
+                    <input type="url" id="cWhatsapp" required placeholder="https://chat.whatsapp.com/...">
+                </div>
+                <div class="input-group full-width">
+                    <button type="submit" class="btn-submit">إضافة الدورة للجدول ✨</button>
+                </div>
+            </div>
+        </form>
+
+        <h2 class="section-title">الدورات الفعالة حالياً في الموقع</h2>
+        <div class="courses-list" id="adminCoursesList">
+            </div>
+    </div>
+
+    <script>
+        const ADMIN_PASS = 'baderdot1';
+        let courses = JSON.parse(localStorage.getItem('raqeem_master_db')) || [];
+
+        // دالة التحقق من كلمة المرور
+        function checkPass() {
+            const passInput = document.getElementById('adminPass');
+            if(passInput.value === ADMIN_PASS) {
+                // إخفاء شاشة القفل وإظهار اللوحة
+                const lockScreen = document.getElementById('lockScreen');
+                lockScreen.style.opacity = '0';
+                setTimeout(() => {
+                    lockScreen.style.visibility = 'hidden';
+                    document.getElementById('adminPanel').style.display = 'flex';
+                    renderList(); // رسم الدورات
+                }, 500);
+            } else {
+                alert('كلمة المرور غير صحيحة. يرجى المحاولة مرة أخرى.');
+                passInput.value = '';
+                passInput.focus();
+            }
+        }
+
+        // دالة إضافة دورة جديدة
+        function addCourse(e) {
+            e.preventDefault();
+            const newCourse = {
+                id: 'RQM_' + Date.now().toString(),
+                name: document.getElementById('cName').value,
+                date: document.getElementById('cDate').value,
+                time: document.getElementById('cTime').value,
+                loc: document.getElementById('cLocation').value,
+                wa: document.getElementById('cWhatsapp').value
+            };
+            
+            // إضافة للداتا في البداية (الأحدث يظهر أولاً)
+            courses.unshift(newCourse);
+            // حفظ في المتصفح ليقرأها ملف schedule.html
+            localStorage.setItem('raqeem_master_db', JSON.stringify(courses));
+            
+            // تفريغ النموذج وتحديث القائمة
+            document.getElementById('courseForm').reset();
+            renderList();
+            
+            alert('تمت إضافة الدورة بنجاح! يمكنك الآن رؤيتها في جدول الدورات.');
+        }
+
+        // دالة حذف دورة
+        function deleteCourse(id) {
+            if(confirm('هل أنت متأكد من رغبتك في إزالة هذه الدورة نهائياً من الجدول؟')) {
+                courses = courses.filter(c => c.id !== id);
+                localStorage.setItem('raqeem_master_db', JSON.stringify(courses));
+                renderList();
+            }
+        }
+
+        // دالة عرض الدورات في لوحة الإدارة
+        function renderList() {
+            const list = document.getElementById('adminCoursesList');
+            list.innerHTML = '';
+            
+            if(courses.length === 0) {
+                list.innerHTML = `<p style="text-align: center; color: var(--text-dim); padding: 20px;">الجدول فارغ. قم بإضافة دورات جديدة.</p>`;
+                return;
+            }
+
+            courses.forEach(c => {
+                list.innerHTML += `
+                    <div class="list-item">
+                        <div class="item-info">
+                            <h3>${c.name}</h3>
+                            <p>
+                                <span>📅 ${c.date}</span>
+                                <span>⏰ ${c.time}</span>
+                                <span>📍 ${c.loc}</span>
+                            </p>
+                        </div>
+                        <button class="btn-del" onclick="deleteCourse('${c.id}')">حذف الدورة 🗑️</button>
+                    </div>
+                `;
+            });
+        }
+    </script>
+</body>
+</html>
