@@ -9,7 +9,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 
 <style>
 @font-face{
@@ -35,7 +35,7 @@
   --max:1220px;
   --radius:24px;
   --ease:cubic-bezier(.22,1,.36,1);
-  --font:"Alexandria",system-ui,sans-serif;
+  --font:"Tajawal",system-ui,sans-serif;
   --pixel:"Geist Pixel Circle",ui-monospace,monospace;
 }
 *{box-sizing:border-box}
@@ -1227,6 +1227,353 @@ h1,h2,h3,p,a,button,label,span,strong{
   }
 }
 
+
+/* =========================
+   TYPOGRAPHY SYSTEM V6
+   Clean Arabic spacing / no glyph collisions
+========================= */
+:root{
+  --font:"Tajawal",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --heading:"IBM Plex Sans Arabic","Tajawal",system-ui,sans-serif;
+}
+
+/* Arabic scripts should never use compressed negative tracking */
+body,
+button,
+input,
+select,
+textarea{
+  font-family:var(--font);
+  letter-spacing:0;
+}
+
+h1,h2,h3,
+.title,
+.hero h1,
+.academy-title,
+.academy-hero h2,
+.player-details h2,
+.mobile-link-copy strong,
+.join-success h3{
+  font-family:var(--heading);
+  letter-spacing:0!important;
+  font-kerning:normal;
+  font-variant-ligatures:common-ligatures contextual;
+  text-rendering:optimizeLegibility;
+}
+
+/* Safe Arabic line boxes */
+.hero h1{
+  line-height:1.18!important;
+  max-width:980px;
+}
+.title{
+  line-height:1.22!important;
+  max-width:920px;
+}
+.academy-hero h2{
+  line-height:1.28!important;
+}
+.player-details h2{
+  line-height:1.45!important;
+}
+.hero p,
+.lead,
+.track p,
+.story-line p,
+.impact-row span,
+.join-point,
+.field label,
+.field input,
+.field textarea,
+.mobile-link-copy small,
+.platform-note,
+.video-title{
+  line-height:1.9;
+}
+
+/* Avoid line collision from fixed/min heights */
+.video-title{
+  min-height:0!important;
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+}
+.story-line,
+.track,
+.impact-row{
+  align-items:start;
+}
+.story-line strong,
+.track h3{
+  line-height:1.5;
+}
+.metric strong,
+.impact-row strong,
+.academy-stat strong{
+  line-height:1.2;
+}
+
+/* More breathing room in hero and section headers */
+.hero-copy{
+  max-width:1020px;
+}
+.hero-line{
+  padding-block:.035em;
+}
+.section-head{
+  align-items:start;
+}
+.section-head > div:first-child{
+  min-width:0;
+}
+.section-head .lead{
+  padding-top:7px;
+}
+.kicker{
+  line-height:1.6;
+}
+
+/* Buttons and pills */
+.btn{
+  line-height:1.55!important;
+  min-height:54px;
+  padding-top:11px;
+  padding-bottom:11px;
+}
+.hero-actions .btn,
+.form-actions .btn,
+.success-actions .btn{
+  min-width:0;
+}
+
+/* Header / nav */
+.nav{
+  line-height:1.5;
+}
+.brand strong{
+  font-family:var(--heading);
+  line-height:1.5;
+}
+.brand span{
+  line-height:1.6;
+}
+
+/* Mobile drawer readability */
+.mobile-link-copy strong{
+  line-height:1.55;
+}
+.mobile-link-copy small{
+  line-height:1.65;
+}
+.mobile-menu-intro p{
+  line-height:1.6;
+}
+.mobile-platform-cta strong,
+.mobile-platform-cta small,
+.mobile-join-cta{
+  line-height:1.55;
+}
+
+/* Join form */
+.role-btn{
+  min-height:104px;
+}
+.role-btn strong{
+  font-family:var(--heading);
+  font-size:14px;
+  line-height:1.55;
+}
+.role-btn span{
+  font-size:9px;
+  line-height:1.75;
+}
+.field input,
+.field textarea{
+  line-height:1.7;
+}
+.form-hint{
+  line-height:1.85;
+}
+
+/* Desktop responsive guardrails */
+@media(min-width:1021px){
+  .hero h1{
+    max-width:1050px;
+  }
+  .intro-layout,
+  .impact-layout,
+  .join-layout{
+    align-items:start;
+  }
+}
+
+/* Tablet */
+@media(max-width:1020px){
+  .hero h1{
+    font-size:clamp(48px,8.6vw,78px)!important;
+    line-height:1.2!important;
+  }
+  .title{
+    font-size:clamp(37px,6.5vw,60px)!important;
+    line-height:1.24!important;
+  }
+  .section-head{
+    gap:24px;
+  }
+}
+
+/* Mobile */
+@media(max-width:760px){
+  .hero h1{
+    font-size:clamp(39px,10.7vw,58px)!important;
+    line-height:1.24!important;
+  }
+  .title{
+    font-size:clamp(32px,9vw,46px)!important;
+    line-height:1.28!important;
+  }
+  .hero p,
+  .lead{
+    font-size:15px;
+    line-height:1.95;
+  }
+  .story-line{
+    grid-template-columns:68px minmax(0,1fr) auto!important;
+    gap:12px!important;
+  }
+  .story-line strong{
+    font-size:18px;
+  }
+  .track{
+    grid-template-columns:42px minmax(0,1fr) 38px!important;
+    gap:12px!important;
+  }
+  .track h3{
+    font-size:22px!important;
+    line-height:1.55;
+  }
+  .track p{
+    font-size:12px;
+    line-height:1.85;
+  }
+  .impact-row{
+    grid-template-columns:98px minmax(0,1fr)!important;
+    gap:14px!important;
+  }
+  .impact-row strong{
+    font-size:30px!important;
+  }
+  .impact-row span{
+    line-height:1.8;
+  }
+  .mobile-link-copy strong{
+    font-size:15px;
+  }
+  .mobile-link-copy small{
+    font-size:9px;
+  }
+  .role-btn{
+    min-height:96px;
+  }
+}
+
+/* Very small devices */
+@media(max-width:420px){
+  .hero h1{
+    font-size:clamp(36px,10.1vw,48px)!important;
+  }
+  .title{
+    font-size:clamp(29px,8.4vw,40px)!important;
+  }
+  .story-line{
+    grid-template-columns:62px minmax(0,1fr) auto!important;
+  }
+  .impact-row{
+    grid-template-columns:86px minmax(0,1fr)!important;
+  }
+}
+
+/* =========================
+   MOTION V6 — smoother, safer, no text distortion
+========================= */
+
+/* Keep text itself stable; animate containers */
+.reveal{
+  opacity:0;
+  transform:translateY(30px) scale(.992);
+  filter:blur(7px);
+  transition:
+    opacity .9s var(--ease),
+    transform .9s var(--ease),
+    filter .9s var(--ease);
+}
+.reveal.in{
+  opacity:1;
+  transform:translateY(0) scale(1);
+  filter:blur(0);
+}
+
+/* Headings get a clean light sweep after reveal */
+.reveal.in .title,
+.reveal.in .section-title,
+.reveal.in h2{
+  animation:titleGlowIn 1.15s var(--ease) both;
+}
+@keyframes titleGlowIn{
+  0%{text-shadow:0 0 0 rgba(69,200,231,0)}
+  45%{text-shadow:0 0 28px rgba(69,200,231,.08)}
+  100%{text-shadow:0 0 0 rgba(69,200,231,0)}
+}
+
+/* Cards/rows animate in with stagger-like delay through nth-child */
+.track.reveal:nth-child(1){transition-delay:.03s}
+.track.reveal:nth-child(2){transition-delay:.08s}
+.track.reveal:nth-child(3){transition-delay:.13s}
+.track.reveal:nth-child(4){transition-delay:.18s}
+
+/* Hero text enters without blur on glyphs after first frame */
+.hero-line{
+  filter:none!important;
+  transform:translateY(24px);
+  animation:heroSafeIn .9s var(--ease) forwards;
+}
+.hero-line:nth-child(2){
+  animation-delay:.11s;
+}
+@keyframes heroSafeIn{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* Soft breathing glow for cyan accents */
+.cyan{
+  animation:cyanBreath 5.5s ease-in-out infinite;
+}
+@keyframes cyanBreath{
+  0%,100%{text-shadow:0 0 0 rgba(69,200,231,0)}
+  50%{text-shadow:0 0 22px rgba(69,200,231,.10)}
+}
+
+/* Section content gets subtle parallax feel without moving text lines */
+.section-inner{
+  will-change:transform;
+}
+
+/* Respect reduced motion */
+@media(prefers-reduced-motion:reduce){
+  .cyan,
+  .reveal.in .title,
+  .reveal.in .section-title,
+  .reveal.in h2{
+    animation:none!important;
+  }
+  .reveal{
+    filter:none!important;
+    transform:none!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1920,6 +2267,28 @@ h1,h2,h3,p,a,button,label,span,strong{
       });
       btn.addEventListener("mouseleave",()=>btn.style.transform="");
     });
+  }
+
+
+  /* Smooth section parallax — container only, never text glyphs */
+  const canParallax = matchMedia("(pointer:fine)").matches && !matchMedia("(prefers-reduced-motion:reduce)").matches;
+  if(canParallax){
+    let ticking = false;
+    const parallaxSections = [...document.querySelectorAll("#siteView .section-inner")];
+    addEventListener("scroll",()=>{
+      if(ticking)return;
+      ticking=true;
+      requestAnimationFrame(()=>{
+        const vh=innerHeight;
+        parallaxSections.forEach(el=>{
+          const r=el.getBoundingClientRect();
+          const center=(r.top+r.height/2)-vh/2;
+          const move=Math.max(-8,Math.min(8,-center*.012));
+          el.style.transform=`translateY(${move}px)`;
+        });
+        ticking=false;
+      });
+    },{passive:true});
   }
 
   document.addEventListener("keydown",e=>{
