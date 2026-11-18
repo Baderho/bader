@@ -32,7 +32,7 @@
     v = initialVelocity;
     // response ≈0.38s, critical by default. Release with strong momentum can be gently underdamped.
     const omega = 2 * Math.PI / 0.38;
-    const dampingRatio = Math.abs(initialVelocity) > 750 ? 0.84 : 1;
+    const dampingRatio = 1;
     const tick = t => {
       const dt = lastFrame ? Math.min((t - lastFrame) / 1000, 0.032) : 1 / 60;
       lastFrame = t;

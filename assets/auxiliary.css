@@ -1,0 +1,17 @@
+/* Public team enrollment: brought in line with the RAQEEM editorial identity. */
+body.apple-teamform{display:flex;align-items:center;flex-direction:column;gap:0;background:#f7f9fa!important;color:#10263d!important;font-family:"IBM Plex Sans Arabic","Tajawal",sans-serif!important}
+.apple-teamform .container{background:#fff;max-width:600px;width:calc(100% - 32px);margin:16px auto 20px;padding:37px 42px;border:1px solid #d7e1e7;border-radius:9px;box-shadow:none}
+.apple-teamform .header img{width:88px;height:88px;object-fit:cover;display:block;margin:0 auto 18px;border-radius:12px}
+.apple-teamform .header h1{font:800 clamp(26px,3vw,33px)/1.3 "Tajawal",sans-serif;color:#10263d}
+.apple-teamform .header p{font-size:13px;color:#516474}
+.apple-teamform .form-group label{font-weight:700;color:#354b5f;font-size:13px}
+.apple-teamform .form-group input{background:#fbfdfe;border:1px solid #cbd9e1;border-radius:7px;min-height:51px;font-size:16px}
+.apple-teamform .form-group input:focus{background:#fff;border-color:#16799f;box-shadow:0 0 0 3px rgba(22,121,159,.12)}
+.apple-teamform .submit-btn{background:#116181;color:#fff;border-radius:7px;min-height:52px;font-size:16px}
+.apple-teamform .submit-btn:hover{background:#0d4d67;color:#fff}
+.aux-back{display:block;margin-top:28px;width:min(600px,calc(100% - 32px));text-align:right;color:#116181;font-size:13px;font-weight:700;text-decoration:none}
+.aux-footer{width:min(600px,calc(100% - 32px));display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin:7px 0 40px;border-top:1px solid #d7e1e7;padding:20px 0;font-size:12px;font-weight:700;color:#116181}
+.aux-footer a{color:inherit;text-decoration:none;overflow-wrap:anywhere}
+.aux-footer a:hover{text-decoration:underline}
+.aux-footer>div{display:flex;gap:16px;flex-wrap:wrap}
+@media(max-width:650px){.apple-teamform .container{padding:28px 19px}.aux-footer{align-items:flex-start;flex-direction:column}}

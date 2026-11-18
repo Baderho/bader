@@ -38,7 +38,6 @@
   const scrollBehavior = () => reducedMotion.matches || root.dataset.input === "keyboard" ? "instant" : "smooth";
   const focusWithoutScroll = el => el?.focus({preventScroll:true});
   const hero = document.getElementById("home");
-  hero.querySelector("h1").addEventListener("animationend", () => hero.classList.add("intro-done"), {once:true});
 
   let menuPreviousFocus = null, playerPreviousFocus = null, academyPreviousFocus = null;
   let savedSiteScroll = 0;
@@ -159,7 +158,7 @@
 
     if(!name || !phone){
       status.textContent="اكتب الاسم ورقم الهاتف حتى نكمل.";
-      status.style.color="#74def3";
+      status.style.color="#b42318";
       if(!name)document.getElementById("fullName").focus(); else document.getElementById("phone").focus();
       return;
     }
@@ -351,50 +350,8 @@
   if("ResizeObserver" in window) new ResizeObserver(scheduleProgress).observe(body);
   updateProgress();
 
-  /* Background video is optional. Never auto-play decorative motion. */
-  const heroVideo = document.getElementById("heroVideo");
-  const heroMediaToggle = document.getElementById("heroMediaToggle");
-  let heroPlayRequest = 0, heroWantsPlayback = false;
-  function reflectHeroPlayback(playing){
-    heroVideo.classList.toggle("is-playing",playing);
-    heroMediaToggle.setAttribute("aria-pressed",String(playing));
-    heroMediaToggle.textContent=playing ? "إيقاف الخلفية" : "تشغيل الخلفية";
-  }
-  function pauseHero(){
-    heroPlayRequest++;
-    heroWantsPlayback=false;
-    heroVideo.pause();
-    reflectHeroPlayback(false);
-  }
-  heroMediaToggle.addEventListener("click",async()=>{
-    if(heroMediaToggle.getAttribute("aria-pressed")==="true") {pauseHero();return;}
-    const request=++heroPlayRequest;
-    heroWantsPlayback=true;
-    heroVideo.muted=true;
-    if(heroVideo.ended) heroVideo.currentTime=0;
-    reflectHeroPlayback(true);
-    try{
-      await heroVideo.play();
-      if(request!==heroPlayRequest && !heroWantsPlayback) heroVideo.pause();
-    }catch{
-      if(request!==heroPlayRequest) return;
-      heroWantsPlayback=false;
-      reflectHeroPlayback(false);
-      heroMediaToggle.textContent="تعذّر تشغيل الخلفية — أعد المحاولة";
-    }
-  });
-  heroVideo.addEventListener("ended",()=>{heroWantsPlayback=false;reflectHeroPlayback(false);});
-  heroVideo.addEventListener("pause",()=>{if(!heroWantsPlayback)reflectHeroPlayback(false);});
-  document.addEventListener("visibilitychange",()=>{if(document.hidden)pauseHero();});
-  new IntersectionObserver(entries=>{if(!entries[0].isIntersecting)pauseHero();}).observe(hero);
-  reducedMotion.addEventListener("change",()=>{
-    if(reducedMotion.matches){
-      pauseHero();
-      hero.classList.add("intro-done");
-      // Cancel any smooth scroll already in flight when preferences change.
-      scrollTo({top:scrollY,left:scrollX,behavior:"instant"});
-    }
-  });
+  /* Decorative video removed: photography is the primary storytelling medium. */
+  function pauseHero(){}
 
   document.addEventListener("keydown",e=>{
     const overlay=player.classList.contains("open") ? player : menu.classList.contains("open") ? menu : null;
