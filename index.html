@@ -3,392 +3,146 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#ffffff">
-<meta name="description" content="رقيم — مبادرة شبابية رقمية من الأردن. نبني وعيًا رقميًا، مهارات عملية، وفرصًا تقرّب الشباب من التقنية وسوق العمل.">
-<title>رقيم | التقنية لما تتحول إلى أثر</title>
-
+<meta name="theme-color" content="#f7f9fa">
+<meta name="description" content="رقيم مبادرة شبابية تطوعية من الأردن، ننقل المعرفة الرقمية إلى مهارات عملية وفرص وتجارب واقعية.">
+<meta property="og:title" content="رقيم | المعرفة تبدأ منك">
+<meta property="og:description" content="مجتمع رقيم: معرفة رقمية، مهارات عملية، وأثر يصنعه الشباب.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/gallery/team.jpeg">
+<title>رقيم | المعرفة تبدأ منك</title>
+<link rel="icon" type="image/webp" href="assets/raqeem-logo.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="assets/site.css">
-<link rel="stylesheet" href="assets/apple-experience.css">
+<link rel="stylesheet" href="assets/raqeem.css">
 </head>
 <body>
+<a href="#mainContent" class="skip-link">انتقل إلى المحتوى</a>
 <div class="scroll-progress" aria-hidden="true"></div>
-
 <header class="header" id="header">
   <div class="container header-inner">
-    <a class="brand" href="#home" id="brandHome">
-      <img src="assets/raqeem-logo.webp" alt="شعار مبادرة رقيم">
-      <div><strong>مبادرة رقيم</strong><span>وعي رقمي • مهارات • أثر</span></div>
+    <a class="brand" href="#home" id="brandHome" aria-label="رقيم — العودة إلى الرئيسية">
+      <img src="assets/raqeem-logo.webp" alt="" width="48" height="48">
+      <span class="brand-lockup"><strong>رقيم</strong><small>مبادرة شبابية تطوعية</small></span>
     </a>
-
-    <nav class="nav" id="nav">
+    <nav class="nav" id="nav" aria-label="القائمة الرئيسية">
       <a href="#about">عن رقيم</a>
       <a href="#tracks">مجالاتنا</a>
-      <a href="#impact">الأثر</a>
-      <a href="#gallery">صورنا</a>
+      <a href="#impact">أثرنا</a>
+      <a href="#gallery">من مجتمعنا</a>
       <a href="#join">انضم إلينا</a>
     </nav>
-
     <div class="header-actions">
-      <button class="btn btn-ghost desktop" data-open-academy>منصة رقيم</button>
-      <a class="btn btn-primary desktop" href="#join">ابدأ معنا</a>
-      <button class="menu-btn" id="menuBtn" aria-label="فتح القائمة" aria-expanded="false" aria-controls="mobileMenu"><i></i><i></i><i></i></button>
+      <button class="nav-platform" type="button" data-open-academy>منصة رقيم <span aria-hidden="true">↗</span></button>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="فتح القائمة" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span></button>
     </div>
   </div>
 </header>
-
-
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true" inert>
-  <aside class="mobile-panel" role="dialog" aria-modal="true" aria-label="قائمة التنقل">
-    <div class="mobile-panel-glow" aria-hidden="true"></div>
-
-    <div class="mobile-top">
-      <a class="mobile-brand" href="#home" data-mobile-link>
-        <img src="assets/raqeem-logo.webp" alt="شعار مبادرة رقيم">
-        <div>
-          <strong>مبادرة رقيم</strong>
-          <span>وعي رقمي • مهارات • أثر</span>
-        </div>
-      </a>
-      <button class="close-btn mobile-close-x" id="closeMenu" aria-label="إغلاق القائمة">×</button>
-    </div>
-
-    <div class="mobile-menu-intro">
-      <span class="pixel">RAQEEM / MENU</span>
-      <p>اختَر وين بدك تروح.</p>
-    </div>
-
+  <aside class="mobile-panel" role="dialog" aria-modal="true" aria-label="قائمة رقيم">
+    <div class="mobile-top"><span>استكشف رقيم</span><button class="close-btn" id="closeMenu" type="button" aria-label="إغلاق القائمة">×</button></div>
     <nav class="mobile-links" aria-label="روابط الموقع">
-      <a href="#home" data-mobile-link data-mobile-section="home">
-        <span class="mobile-link-index">01</span>
-        <span class="mobile-link-copy"><strong>الرئيسية</strong><small>العودة لبداية رقيم</small></span>
-        <span class="mobile-link-arrow">↗</span>
-      </a>
-
-      <a href="#about" data-mobile-link data-mobile-section="about">
-        <span class="mobile-link-index">02</span>
-        <span class="mobile-link-copy"><strong>عن رقيم</strong><small>الفكرة والهوية</small></span>
-        <span class="mobile-link-arrow">↗</span>
-      </a>
-
-      <a href="#tracks" data-mobile-link data-mobile-section="tracks">
-        <span class="mobile-link-index">03</span>
-        <span class="mobile-link-copy"><strong>مجالاتنا</strong><small>المسارات التي نعمل عليها</small></span>
-        <span class="mobile-link-arrow">↗</span>
-      </a>
-
-      <a href="#impact" data-mobile-link data-mobile-section="impact">
-        <span class="mobile-link-index">04</span>
-        <span class="mobile-link-copy"><strong>الأثر</strong><small>الأرقام والنتائج</small></span>
-        <span class="mobile-link-arrow">↗</span>
-      </a>
-
-      <a href="#gallery" data-mobile-link data-mobile-section="gallery">
-        <span class="mobile-link-index">05</span>
-        <span class="mobile-link-copy"><strong>صور رقيم</strong><small>التجمع السنوي ولحظات من أنشطتنا</small></span>
-        <span class="mobile-link-arrow">↗</span>
-      </a>
-      <a href="#join" data-mobile-link data-mobile-section="join">
-        <span class="mobile-link-index">06</span>
-        <span class="mobile-link-copy"><strong>انضم إلينا</strong><small>شارك، تطوع، درّب أو تعاون</small></span>
-        <span class="mobile-link-arrow">↗</span>
-      </a>
+      <a href="#home" data-mobile-link data-mobile-section="home">الرئيسية <span>↗</span></a>
+      <a href="#about" data-mobile-link data-mobile-section="about">عن رقيم <span>↗</span></a>
+      <a href="#tracks" data-mobile-link data-mobile-section="tracks">مجالاتنا <span>↗</span></a>
+      <a href="#impact" data-mobile-link data-mobile-section="impact">أثرنا <span>↗</span></a>
+      <a href="#gallery" data-mobile-link data-mobile-section="gallery">صور المجتمع <span>↗</span></a>
+      <a href="#join" data-mobile-link data-mobile-section="join">انضم إلينا <span>↗</span></a>
     </nav>
-
-    <div class="mobile-quick">
-      <button class="mobile-platform-cta" data-open-academy>
-        <span>
-          <small>المحتوى والتعلّم</small>
-          <strong>دخول منصة رقيم</strong>
-        </span>
-        <b>↗</b>
-      </button>
-
-      <a class="mobile-join-cta" href="#join" data-mobile-link>
-        <span>ابدأ مع رقيم</span>
-        <b>→</b>
-      </a>
-    </div>
-
-    <div class="mobile-foot">
-      <div>
-        <span>الأردن</span>
-        <span>•</span>
-        <span>2026</span>
-      </div>
-      <a href="mailto:raqeemimpact@gmail.com">raqeemimpact@gmail.com</a>
-    </div>
+    <button type="button" class="mobile-platform-cta" data-open-academy>دخول منصة رقيم <span>↗</span></button>
+    <div class="mobile-foot"><a href="mailto:raqeemimpact@gmail.com" dir="ltr">raqeemimpact@gmail.com</a><div><a href="https://www.instagram.com/raqeem_jo/?hl=en" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.linkedin.com/company/raqee/" target="_blank" rel="noopener noreferrer">LinkedIn</a></div></div>
   </aside>
 </div>
-
 <div id="siteView">
-<main>
-<section class="hero" id="home">
-  <div class="hero-fx" aria-hidden="true"><span class="hero-orb one"></span><span class="hero-orb two"></span></div>
-  <video class="hero-video" id="heroVideo" muted playsinline preload="none" aria-hidden="true" tabindex="-1">
-    <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260809_012548_ef22562c-c0ae-4816-ad9d-f8922af4e6a7.mp4" type="video/mp4">
-  </video>
-
-  <div class="container hero-inner">
-    <div class="hero-copy">
-      <div class="hero-badge"><i></i> مبادرة شبابية رقمية من الأردن</div>
-      <h1>
-        <span class="hero-line">نفهم التقنية.</span>
-        <span class="hero-line">نحوّلها إلى <span class="cyan">فرصة وأثر.</span></span>
-      </h1>
-      <p>رقيم مساحة شبابية تساعدك تفهم التقنية بشكل أبسط، تتعلم مهارات عملية، وتقترب من فرص حقيقية في التعلم والتطوع والعمل.</p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#about">اعرف رقيم ↗</a>
-        <button class="btn btn-ghost" data-open-academy>استكشف المنصة</button>
+<main id="mainContent">
+  <section class="hero" id="home" aria-labelledby="heroTitle">
+    <div class="container hero-layout">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="eyebrow-line"></span> من المفرق، إلى كل شاب عنده فضول يتعلّم</span>
+        <h1 id="heroTitle">المعرفة<br>تبدأ <em>منك.</em></h1>
+        <p>رقيم مبادرة شبابية تطوعية تؤمن أن التقنية مش مجرد أدوات؛ هي معرفة نتشاركها، مهارة نطبّقها، وفرصة نصنعها معًا.</p>
+        <div class="hero-actions"><a class="btn btn-primary" href="#about">تعرّف على رقيم <span aria-hidden="true">↗</span></a><button class="btn btn-text" type="button" data-open-academy>استكشف محتوى المنصة <span aria-hidden="true">←</span></button></div>
+        <div class="hero-quiet"><span class="hero-dot"></span> وعي رقمي <span>·</span> مهارات عملية <span>·</span> أثر مجتمعي</div>
       </div>
-      <button class="btn btn-ghost hero-media-toggle" id="heroMediaToggle" type="button" aria-pressed="false" aria-controls="heroVideo">تشغيل الخلفية</button>
-      <div class="hero-tags"><span>وعي رقمي</span><i></i><span>مهارات عملية</span><i></i><span>ذكاء اصطناعي</span><i></i><span>فرص شبابية</span></div>
-    </div>
-
-  
-      <div class="apple-showcase" role="img" aria-label="عرض بصري لهوية رقيم ومجتمع التعلم الرقمي">
-        <div class="showcase-heading">
-          <span class="showcase-eyebrow">RAQEEM / CREATE YOUR IMPACT</span>
-          <strong>نحو معرفة.<br>تصنع فرقًا.</strong>
-          <small>نتعلّم معًا، نطبّق، ونفتح أبوابًا جديدة.</small>
-        </div>
-        <div class="showcase-device" aria-hidden="true">
-          <div class="showcase-device-top"><i></i><i></i><i></i></div>
-          <div class="showcase-screen">
-            <img src="assets/raqeem-logo.webp" alt="" width="94" height="94" decoding="async">
-            <span>RAQEEM / COMMUNITY</span>
-            <strong>مهارة جديدة.<br>فرصة أكبر.</strong>
-            <div class="showcase-progress"><i></i></div>
-            <small>المعرفة تصبح أثرًا بالتطبيق</small>
-          </div>
-        </div>
-        <div class="showcase-note" aria-hidden="true">✦ مساحتك للتعلّم والنمو</div>
-      </div>
-
-  <div class="metrics" id="metrics">
-      <div class="metric"><strong>3,417</strong><span>عدد المستفيدين</span></div>
-      <div class="metric"><strong>161</strong><span>عدد الفرص</span></div>
-      <div class="metric"><strong>19,326</strong><span>عدد الساعات</span></div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="about"><span class="section-title-number">01</span>
-  <div class="container section-inner intro-layout">
-    <div>
-      <div class="kicker">عن رقيم</div>
-      <h2 class="title">رقيم ليست دورة.<br><span class="cyan">هي مساحة تتعلم وتجرّب وتشارك.</span></h2>
-      <p class="lead">نعمل مع الشباب على رفع الوعي الرقمي وبناء مهارات تقنية واضحة وقابلة للتطبيق، من خلال تدريبات وتجارب وفرص تربط المعرفة بالحياة وسوق العمل.</p>
-
-      <div class="story-lines">
-        <div class="story-line"><strong>نفهم</strong><p>نبدأ من الحاجة الحقيقية للشباب.</p><b>01</b></div>
-        <div class="story-line"><strong>نطبّق</strong><p>نحوّل المحتوى إلى تجربة عملية.</p><b>02</b></div>
-        <div class="story-line"><strong>نوسّع</strong><p>نربط التعلم بفرص مشاركة وأثر.</p><b>03</b></div>
+      <div class="hero-visual">
+        <img src="assets/gallery/team.jpeg" alt="مجموعة من أعضاء ومشاركي رقيم في لقاء جماعي بمركز الأميرة بسمة في المفرق" width="1280" height="720" fetchpriority="high" decoding="async">
+        <div class="hero-image-foot"><span>مجتمع ينمو بالمعرفة</span><strong>RAQEEM <span>/</span> JORDAN</strong></div>
       </div>
     </div>
-
-    <div class="logo-orbit" aria-hidden="true">
-      <i class="a"></i><i class="b"></i><i class="c"></i>
-      <img src="assets/raqeem-logo.webp" alt="">
-    </div>
-  </div>
-</section>
-
-<div class="fx-marquee" aria-hidden="true">
-  <div class="fx-marquee-track">
-    <span>RAQEEM</span><b>•</b><span>DIGITAL AWARENESS</span><b>•</b><span>AI</span><b>•</b><span>CYBERSECURITY</span><b>•</b><span>PRACTICAL SKILLS</span><b>•</b><span>YOUTH IMPACT</span><b>•</b>
-  </div>
-</div>
-
-<section class="section tracks" id="tracks"><span class="section-title-number">02</span>
-  <div class="container section-inner">
-    <div class="section-head">
-      <div>
-        <div class="kicker">مجالاتنا</div>
-        <h2 class="title">أربع مساحات.<br>كل واحدة تقرّبك <span class="cyan">خطوة.</span></h2>
-      </div>
-      <p class="lead">نركز على المهارات التي يحتاجها الشباب اليوم، ونقدمها بطريقة بسيطة، عملية، وقريبة من الاستخدام الحقيقي.</p>
-    </div>
-
-    <div class="track-list">
-      <article class="track"><div class="track-code">01</div><h3>الوعي الرقمي</h3><p>فهم التقنية، الخصوصية، السلوك الرقمي، والاستخدام الآمن للمنصات.</p><button class="track-arrow" type="button" data-open-academy aria-label="استكشف محتوى منصة رقيم حول الوعي الرقمي">↗</button></article>
-      <article class="track"><div class="track-code">AI</div><h3>الذكاء الاصطناعي</h3><p>استخدام أدوات الذكاء الاصطناعي في التعلم والعمل وحل المشكلات بطريقة عملية ومسؤولة.</p><button class="track-arrow" type="button" data-open-academy aria-label="استكشف محتوى منصة رقيم حول الذكاء الاصطناعي">↗</button></article>
-      <article class="track"><div class="track-code">#</div><h3>الأمن السيبراني</h3><p>رفع الوعي بالمخاطر الرقمية وحماية الحسابات والبيانات وفهم التهديدات اليومية.</p><button class="track-arrow" type="button" data-open-academy aria-label="استكشف محتوى منصة رقيم حول الأمن السيبراني">↗</button></article>
-      <article class="track"><div class="track-code">↗</div><h3>المهارات المهنية</h3><p>مهارات رقمية ومكتبية ومهنية تساعد الشباب في الدراسة والعمل والوصول للفرص.</p><button class="track-arrow" type="button" data-open-academy aria-label="استكشف محتوى منصة رقيم حول المهارات المهنية">↗</button></article>
-    </div>
-  </div>
-</section>
-
-<section class="section impact" id="impact"><span class="section-title-number">03</span>
-  <div class="container section-inner impact-layout">
-    <div>
-      <div class="kicker">أثر رقيم</div>
-      <h2 class="title">مش بس عدد حضور.<br><span class="cyan">بل حركة مستمرة.</span></h2>
-      <p class="lead">نقيس التفاعل والعمل والفرص بشكل مباشر، ونستخدم الأرقام حتى نعرف أين وصلنا وما الذي يجب أن نبنيه بعد ذلك.</p>
-    </div>
-
-    <div class="impact-list">
-      <div class="impact-row"><strong>3,417</strong><span>عدد المستفيدين</span></div>
-      <div class="impact-row"><strong>161</strong><span>عدد الفرص</span></div>
-      <div class="impact-row"><strong>19,326</strong><span>عدد الساعات</span></div>
-    </div>
-  </div>
-</section>
-
-
-<section class="section gallery-section" id="gallery" aria-labelledby="galleryTitle"><span class="section-title-number" aria-hidden="true">04</span>
-  <div class="container section-inner">
-    <div class="section-head">
-      <div><div class="kicker">من مجتمع رقيم</div><h2 class="title" id="galleryTitle">وجوه وقصص.<br><span class="cyan">ولحظات تجمعنا.</span></h2></div>
-      <p class="lead">من التعلّم والعمل معًا، إلى تجمع رقيم السنوي. هنا نشارك صورًا من رحلتنا.</p>
-    </div>
-    <div class="gallery-grid">
-      <figure class="gallery-card gallery-card--annual" data-gallery="annual">
-        <div class="gallery-media">
-          <img src="team.jpeg" alt="تجمّع رقيم السنوي" loading="lazy" decoding="async" width="1600" height="700">
-          <div class="gallery-placeholder" role="img" aria-label="مساحة مخصصة لصورة: تجمّع رقيم السنوي">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="3" y="5" width="18" height="15" rx="3"/><path d="m3 16 5-5 4 4 3-3 6 6"/><circle cx="16.5" cy="9.5" r="1.5"/></svg><span>تجمّع رقيم السنوي</span><small>مساحة الصورة</small>
-          </div>
-          <span class="gallery-label">معًا في رقيم</span>
-        </div>
-        <figcaption><h3>تجمّع رقيم السنوي</h3><span class="pixel">01 / ANNUAL</span></figcaption>
-      </figure>
-      <figure class="gallery-card" data-gallery="photo1">
-        <div class="gallery-media">
-          <img alt="نتعلّم ونجرّب" loading="lazy" decoding="async" width="800" height="600" hidden>
-          <div class="gallery-placeholder" role="img" aria-label="مساحة مخصصة لصورة: نتعلّم ونجرّب">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="3" y="5" width="18" height="15" rx="3"/><path d="m3 16 5-5 4 4 3-3 6 6"/><circle cx="16.5" cy="9.5" r="1.5"/></svg><span>Organised by EU MedBridge</span><small>مساحة الصورة</small>
-          </div>
-          <span class="gallery-label">RootsOfBusinessChange2026</span>
-        </div>
-        <figcaption><h3>Organised by EU MedBridge</h3><span class="pixel">02</span></figcaption>
-      </figure>
-      <figure class="gallery-card" data-gallery="photo2">
-        <div class="gallery-media">
-          <img alt="نعمل معًا" loading="lazy" decoding="async" width="800" height="600" hidden>
-          <div class="gallery-placeholder" role="img" aria-label="مساحة مخصصة لصورة: نعمل معًا">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="3" y="5" width="18" height="15" rx="3"/><path d="m3 16 5-5 4 4 3-3 6 6"/><circle cx="16.5" cy="9.5" r="1.5"/></svg><span>نعمل معًا</span><small>مساحة الصورة</small>
-          </div>
-          <span class="gallery-label">من ورشاتنا</span>
-        </div>
-        <figcaption><h3>نادي اللغة الانجليزية</h3><span class="pixel">03</span></figcaption>
-      </figure>
-      <figure class="gallery-card" data-gallery="photo3">
-        <div class="gallery-media">
-          <img alt="نشارك الأثر" loading="lazy" decoding="async" width="800" height="600" hidden>
-          <div class="gallery-placeholder" role="img" aria-label="مساحة مخصصة لصورة: نشارك الأثر">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="3" y="5" width="18" height="15" rx="3"/><path d="m3 16 5-5 4 4 3-3 6 6"/><circle cx="16.5" cy="9.5" r="1.5"/></svg><span>نشارك الأثر</span><small>مساحة الصورة</small>
-          </div>
-          <span class="gallery-label">من مجتمعنا</span>
-        </div>
-        <figcaption><h3>نشارك الأثر</h3><span class="pixel">04</span></figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<section class="section join" id="join"><span class="section-title-number">05</span>
-  <div class="container section-inner join-layout">
-    <div class="join-copy">
-      <div class="kicker">انضم إلى رقيم</div>
-      <h2 class="title">اختر كيف تحب<br><span class="cyan">تكون جزءًا من رقيم.</span></h2>
-      <p class="lead">بدل نموذج طويل ومعقد، اختر دورك، اكتب معلوماتك الأساسية، ثم أكمل التواصل معنا بالطريقة الأنسب.</p>
-
-      <div class="join-points">
-        <div class="join-point"><i></i><span>خطوات قصيرة وواضحة.</span></div>
-        <div class="join-point"><i></i><span>يمكنك الانضمام كمشارك، متطوع، مدرب، أو شريك.</span></div>
-        <div class="join-point"><i></i><span>بعد الإرسال يظهر لك رابط واتساب جاهز برسالتك.</span></div>
+    <div class="container hero-tail"><span>فكرة بسيطة. أثر يتوسع.</span><a href="#impact">شوف أثرنا بالأرقام <span aria-hidden="true">↓</span></a></div>
+  </section>
+  <section class="section about" id="about" aria-labelledby="aboutTitle">
+    <div class="container about-layout">
+      <div class="section-heading"><span class="section-tag">01 / من نحن</span><h2 id="aboutTitle">نتعلّم لنعرف.<br><span>ونعرف لنغيّر.</span></h2></div>
+      <div class="about-copy"><p class="statement">بدأت رقيم من فكرة أن الوصول للتقنية لا يكفي؛ المهم أن يعرف الشباب كيف يستخدمونها بثقة، وبطريقة تصنع فرقًا في حياتهم.</p><p>نقدّم مساحات للتعلّم والتجربة والتطوع، ونربط المهارات الرقمية باحتياجات الشباب الواقعية. ننطلق من المفرق ونوسّع فرص الوصول من خلال التعاون والتعلّم عن بُعد.</p>
+        <a class="inline-link" href="#tracks">تعرّف على مجالات عملنا <span aria-hidden="true">↗</span></a>
       </div>
     </div>
-
-    <div class="join-form-wrap">
-      <div class="join-role-title">أولًا: اختر صفتك</div>
-
-      <div class="role-grid" id="roleGrid">
-        <button class="role-btn active" type="button" data-role="مشارك" aria-pressed="true"><strong>مشارك</strong><span>أريد الاستفادة من التدريبات والفرص.</span></button>
-        <button class="role-btn" type="button" data-role="متطوع" aria-pressed="false"><strong>متطوع</strong><span>أريد المساهمة مع فريق رقيم.</span></button>
-        <button class="role-btn" type="button" data-role="مدرب" aria-pressed="false"><strong>مدرب</strong><span>أريد تقديم تدريب أو مشاركة خبرتي.</span></button>
-        <button class="role-btn" type="button" data-role="شريك محتمل" aria-pressed="false"><strong>شريك</strong><span>جهة مهتمة بالتعاون أو الشراكة.</span></button>
+    <div class="container values-strip" aria-label="طريقة عمل رقيم"><div><strong>نفهم</strong><span>نبدأ من احتياج حقيقي</span></div><div><strong>نجرّب</strong><span>نتعلّم بالممارسة</span></div><div><strong>نشارك</strong><span>ننقل المعرفة لغيرنا</span></div></div>
+  </section>
+  <section class="section tracks" id="tracks" aria-labelledby="tracksTitle">
+    <div class="container">
+      <div class="section-intro"><div><span class="section-tag">02 / ما الذي نقدمه</span><h2 id="tracksTitle">مسارات مختلفة.<br><span>هدف واحد: التمكين.</span></h2></div><p>لا نعرض التقنية كموضوع معقّد، بل كمهارات وأفكار يمكن البدء بتطبيقها اليوم.</p></div>
+      <div class="track-list">
+        <article class="track"><div class="track-symbol">✳</div><div class="track-text"><h3>الوعي الرقمي</h3><p>نساعد الشباب على فهم العالم الرقمي، الخصوصية، والتعامل الواعي والآمن مع المنصات.</p></div><button class="track-arrow" type="button" data-open-academy aria-label="استكشف محتوى الوعي الرقمي">↗</button></article>
+        <article class="track"><div class="track-symbol">AI</div><div class="track-text"><h3>الذكاء الاصطناعي</h3><p>تجربة أدوات الذكاء الاصطناعي بوعي، واستخدامها لتطوير التعلّم والعمل وحل المشكلات.</p></div><button class="track-arrow" type="button" data-open-academy aria-label="استكشف محتوى الذكاء الاصطناعي">↗</button></article>
+        <article class="track"><div class="track-symbol">◎</div><div class="track-text"><h3>الأمن السيبراني</h3><p>فهم المخاطر الرقمية وكيفية حماية الحسابات والبيانات في الحياة اليومية.</p></div><button class="track-arrow" type="button" data-open-academy aria-label="استكشف محتوى الأمن السيبراني">↗</button></article>
+        <article class="track"><div class="track-symbol">↗</div><div class="track-text"><h3>المهارات الرقمية والمهنية</h3><p>تطبيقات ومهارات تساعد الشباب على إنتاج عمل ملموس والاستعداد لفرص جديدة.</p></div><button class="track-arrow" type="button" data-open-academy aria-label="استكشف محتوى المهارات الرقمية والمهنية">↗</button></article>
       </div>
-
-      <form id="joinForm" novalidate>
-        <input type="hidden" id="joinRole" value="مشارك">
-
-        <div class="form-grid">
-          <div class="field">
-            <label for="fullName">الاسم الكامل / اسم الجهة</label>
-            <input id="fullName" name="fullName" type="text" placeholder="اكتب الاسم هنا" required>
-          </div>
-
-          <div class="field">
-            <label for="phone">رقم الهاتف</label>
-            <input id="phone" name="phone" type="tel" placeholder="07XXXXXXXX" inputmode="tel" required>
-          </div>
-
-          <div class="field">
-            <label for="email">البريد الإلكتروني</label>
-            <input id="email" name="email" type="email" placeholder="name@example.com">
-          </div>
-
-          <div class="field">
-            <label for="city">المحافظة / المدينة</label>
-            <input id="city" name="city" type="text" placeholder="مثال: المفرق">
-          </div>
-
-          <div class="field full">
-            <label for="message">خبرنا باختصار: شو حاب تعمل مع رقيم؟</label>
-            <textarea id="message" name="message" placeholder="اكتب رسالتك هنا..."></textarea>
-          </div>
-        </div>
-
-        <div class="form-hint">لن يتم إرسال البيانات إلى خادم؛ عند الضغط على المتابعة سيتم تجهيز رسالة واتساب منظمة تستطيع مراجعتها قبل الإرسال.</div>
-
-        <div class="form-actions">
-          <button class="btn btn-primary" type="submit">متابعة الانضمام ↗</button>
-          <span class="form-status" id="formStatus" role="status">يحتاج الاسم ورقم الهاتف فقط للمتابعة.</span>
-        </div>
-      </form>
-
-      <div class="join-success" id="joinSuccess" tabindex="-1" role="region" aria-labelledby="successTitle">
-        <h3 id="successTitle">تمام — جهزنا طلبك.</h3>
-        <p id="successText">راجع الرسالة ثم أرسلها لنا عبر واتساب أو البريد.</p>
-        <div class="success-actions">
-          <a class="btn btn-cyan" id="whatsappLink" href="#" target="_blank" rel="noopener">إرسال عبر واتساب</a>
-          <a class="btn btn-ghost" id="emailLink" href="#">إرسال بالبريد</a>
-          <button class="btn btn-ghost" id="editJoin" type="button">تعديل الطلب</button>
-        </div>
+      <div class="tracks-foot"><span>تبحث عن مواد رقمية تتعلّم منها بنفسك؟</span><button type="button" data-open-academy>ادخل منصة رقيم <span aria-hidden="true">↗</span></button></div>
+    </div>
+  </section>
+  <section class="section impact" id="impact" aria-labelledby="impactTitle">
+    <div class="container impact-layout">
+      <div class="impact-copy"><span class="section-tag">03 / أثرنا بالأرقام</span><h2 id="impactTitle">الأثر مش شعار.<br>الأثر <span>ناس وتجارب.</span></h2><p>كل رقم وراءه مشاركة أو فرصة أو ساعات من وقت الشباب والمتطوعين. نستمر في التعلم، ونقيس ما ننجزه لنطوّر الخطوة القادمة.</p><span class="impact-footnote">إحصائيات مبادرة رقيم المحدثة · 2026</span></div>
+      <div class="impact-list"><div class="impact-row"><strong>3,417</strong><span>مستفيدًا من مبادرة رقيم</span></div><div class="impact-row"><strong>161</strong><span>فرصة تطوعية وتعليمية</span></div><div class="impact-row"><strong>19,326</strong><span>ساعة مشاركة وتطوع</span></div></div>
+    </div>
+  </section>
+  <section class="section gallery-section" id="gallery" aria-labelledby="galleryTitle">
+    <div class="container">
+      <div class="section-intro gallery-intro"><div><span class="section-tag">04 / الحياة داخل رقيم</span><h2 id="galleryTitle">هذه حكايتنا.<br><span>بالصور الحقيقية.</span></h2></div><p>لقاءات، تدريبات، وتجارب تصنعها وجوه رقيم. جزء من رحلتنا في أربع لقطات.</p></div>
+      <div class="gallery-grid">
+        <figure class="gallery-card gallery-card--annual" data-gallery="annual"><div class="gallery-media"><img src="assets/gallery/team.jpeg" alt="أعضاء ومشاركو رقيم في لقاء جماعي" width="1280" height="720" loading="lazy" decoding="async"><div class="gallery-placeholder" hidden>صورة اللقاء الجماعي</div></div><figcaption><strong>مجتمع رقيم</strong><span>اللقاء السنوي</span></figcaption></figure>
+        <figure class="gallery-card gallery-card--roots" data-gallery="photo1"><div class="gallery-media"><img src="assets/gallery/rootseu.jpeg" alt="مشاركة رقيم في فعالية Roots of Business Change" width="1320" height="1147" loading="lazy" decoding="async"><div class="gallery-placeholder" hidden>صورة المشاركة</div></div><figcaption><strong>فرص وتجارب</strong><span>مشاركة مجتمعية</span></figcaption></figure>
+        <figure class="gallery-card gallery-card--club" data-gallery="photo2"><div class="gallery-media"><img src="assets/gallery/englishclub.jpeg" alt="مشارك يقدم نشاطًا في نادي اللغة الإنجليزية" width="1046" height="1600" loading="lazy" decoding="async"><div class="gallery-placeholder" hidden>صورة النادي</div></div><figcaption><strong>نتعلّم معًا</strong><span>نادي اللغة الإنجليزية</span></figcaption></figure>
+        <figure class="gallery-card gallery-card--workshop" data-gallery="photo3"><div class="gallery-media"><img src="assets/gallery/aabu.jpeg" alt="مشاركون في جلسة تعليمية وشخص يقدم عرضًا أمامهم" width="1280" height="720" loading="lazy" decoding="async"><div class="gallery-placeholder" hidden>صورة الورشة</div></div><figcaption><strong>من قلب الميدان</strong><span>جلسات وورش عملية</span></figcaption></figure>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+  <section class="section join" id="join" aria-labelledby="joinTitle">
+    <div class="container join-layout">
+      <div class="join-copy"><span class="section-tag">05 / شارك معنا</span><h2 id="joinTitle">في مكان إلك<br><span>داخل رقيم.</span></h2><p>إذا كنت مهتمًا بالتعلم، التطوع، التدريب أو الشراكة، خبرنا كيف تحب تكون جزءًا من المجتمع.</p><div class="join-contact"><span>تفضّل التواصل المباشر؟</span><a href="mailto:raqeemimpact@gmail.com" dir="ltr">raqeemimpact@gmail.com</a></div></div>
+      <div class="join-form-wrap"><div class="join-role-title">كيف تحب تشارك؟</div><div class="role-grid" id="roleGrid"><button class="role-btn active" type="button" data-role="مشارك" aria-pressed="true"><strong>مشارك</strong><span>أتعلم وأكتسب مهارة</span></button><button class="role-btn" type="button" data-role="متطوع" aria-pressed="false"><strong>متطوع</strong><span>أشارك بوقتي وخبرتي</span></button><button class="role-btn" type="button" data-role="مدرب" aria-pressed="false"><strong>مدرب</strong><span>أنقل معرفة وتجربة</span></button><button class="role-btn" type="button" data-role="شريك محتمل" aria-pressed="false"><strong>شريك</strong><span>نتعاون لنكبر الأثر</span></button></div>
+      <form id="joinForm" novalidate><input type="hidden" id="joinRole" value="مشارك"><div class="form-grid"><div class="field"><label for="fullName">الاسم الكامل / اسم الجهة <span aria-hidden="true">*</span></label><input id="fullName" name="fullName" type="text" placeholder="اسمك الكامل" autocomplete="name" required></div><div class="field"><label for="phone">رقم الهاتف <span aria-hidden="true">*</span></label><input id="phone" name="phone" type="tel" placeholder="07XXXXXXXX" autocomplete="tel" inputmode="tel" required></div><div class="field"><label for="email">البريد الإلكتروني</label><input id="email" name="email" type="email" placeholder="name@example.com" autocomplete="email"></div><div class="field"><label for="city">المحافظة / المدينة</label><input id="city" name="city" type="text" placeholder="مثلاً: المفرق" autocomplete="address-level1"></div><div class="field full"><label for="message">خبرنا أكثر عن اهتمامك</label><textarea id="message" name="message" placeholder="كيف تحب تتعاون أو تتعلّم معنا؟" rows="3"></textarea></div></div><p class="form-hint">لن تُرسل بياناتك تلقائيًا؛ سنجهّز لك رسالة تراجعها وترسلها عبر واتساب أو البريد الإلكتروني.</p><div class="form-actions"><button class="btn btn-primary" type="submit">جهّز رسالة التواصل <span aria-hidden="true">↗</span></button><span class="form-status" id="formStatus" role="status">الاسم ورقم الهاتف مطلوبان.</span></div></form>
+      <div class="join-success" id="joinSuccess" tabindex="-1" role="region" aria-labelledby="successTitle"><h3 id="successTitle">رسالتك جاهزة.</h3><p id="successText">راجع الرسالة ثم أرسلها عبر واتساب أو البريد.</p><div class="success-actions"><a class="btn btn-primary" id="whatsappLink" href="#" target="_blank" rel="noopener noreferrer">إرسال عبر واتساب ↗</a><a class="btn btn-ghost" id="emailLink" href="#">إرسال بالبريد ↗</a><button class="btn btn-ghost" id="editJoin" type="button">تعديل المعلومات</button></div></div>
+      </div>
+    </div>
+  </section>
 </main>
-
-<footer class="footer">
-  <div class="container footer-inner">
-    <div class="footer-brand"><img src="assets/raqeem-logo.webp" alt="شعار مبادرة رقيم"><div><strong>مبادرة رقيم</strong><span>وعي رقمي • مهارات عملية • أثر مجتمعي</span></div></div>
-    <div class="footer-meta">الأردن • +962 7 9108 7449<br>raqeemimpact@gmail.com • © 2026</div>
+<footer class="footer" id="contact">
+  <div class="container">
+    <div class="footer-top"><div><span class="footer-kicker">تواصل مع رقيم / CONTACT</span><h2>فكرة عندك؟<br><span>خلينا نحكي.</span></h2></div><p>للمشاركة، التطوع، التدريب أو التعاون — البريد الإلكتروني هو الطريق المباشر لفريق رقيم.</p></div>
+    <a class="footer-email" href="mailto:raqeemimpact@gmail.com"><span class="mail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.2"/><path d="m3.3 6 8.7 7 8.7-7"/></svg></span><span dir="ltr">raqeemimpact@gmail.com</span><span class="footer-email-arrow" aria-hidden="true">↗</span></a>
+    <div class="footer-social"><span class="footer-social-label">تابع رحلتنا</span><div class="footer-social-links"><a href="https://www.instagram.com/raqeem_jo/?hl=en" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.75" y="2.75" width="18.5" height="18.5" rx="5.2"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.8" cy="6.3" r="1" fill="currentColor" stroke="none"/></svg><span>Instagram</span><b aria-hidden="true">↗</b></a><a href="https://www.linkedin.com/company/raqee/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.4 3.4a2 2 0 1 1 0 4 2 2 0 0 1 0-4ZM3.7 9h3.4v11.2H3.7V9Zm5.5 0h3.2v1.5h.1c.5-.9 1.6-1.8 3.3-1.8 3.5 0 4.2 2.1 4.2 4.9v6.6h-3.4v-5.9c0-1.4 0-3.1-1.9-3.1s-2.1 1.5-2.1 3v6h-3.4V9Z"/></svg><span>LinkedIn</span><b aria-hidden="true">↗</b></a></div></div>
+    <div class="footer-bottom"><div class="footer-brand"><img src="assets/raqeem-logo.webp" alt="" width="42" height="42"><span><strong>مبادرة رقيم</strong><small>مبادرة شبابية تطوعية، من الأردن.</small></span></div><div class="footer-bottom-links"><a href="#about">عن رقيم</a><a href="schedule.html">التدريبات القادمة</a><button type="button" data-open-academy>المنصة</button></div><span class="copyright">© 2026 RAQEEM</span></div>
   </div>
 </footer>
 </div>
-
 <!-- ACADEMY -->
 <section id="academyView" class="academy-view hidden">
   <div class="academy-shell">
     <div class="academy-top">
       <div>
-        <div class="academy-label">RAQEEM / LEARNING SPACE</div>
-        <h1 class="academy-title" tabindex="-1">مساحتك للتعلّم.</h1><p class="academy-intro">محتوى رقمي عملي، تختار منه ما يناسبك.</p>
+        <div class="academy-label">مساحة رقيم التعليمية / RAQEEM</div>
+        <h1 class="academy-title" tabindex="-1">تعلّم على طريقتك.</h1><p class="academy-intro">استكشف فيديوهات ومحتوى رقيم في مكان واحد، من الوعي الرقمي إلى المهارات العملية.</p>
       </div>
 
       <div class="search-wrap"><span class="search-mark">⌕</span><input aria-label="ابحث في محتوى رقيم" id="academySearch" class="search" type="search" placeholder="ابحث في محتوى رقيم..." autocomplete="off"></div>
-      <button class="btn btn-ghost" data-close-academy>العودة للموقع</button>
+      <button class="btn btn-ghost academy-back" data-close-academy>العودة للموقع ↗</button>
     </div>
 
     <div class="academy-tabs">
-      <button class="academy-tab active" data-scroll="featured">الرئيسية</button>
+      <button class="academy-tab active" data-scroll="featured">المختار</button>
       <button class="academy-tab" data-scroll="library">المحتوى</button>
       <button class="academy-tab" data-focus-search>بحث</button>
       <a class="academy-tab" href="schedule.html">التدريبات القادمة ↗</a>
@@ -405,7 +159,7 @@
         <img id="featuredImage" class="academy-hero-bg" src="" alt="">
         <div class="academy-hero-overlay"></div>
         <div class="academy-hero-content">
-          <div class="featured-tag"><i></i> أحدث محتوى</div>
+          <div class="featured-tag">من مكتبة رقيم</div>
           <h2 id="featuredTitle">أحدث محتوى رقيم</h2>
           <div class="academy-meta"><span id="featuredChannel">رقيم</span><span>•</span><span id="featuredDate">—</span></div>
           <div class="academy-actions"><button class="btn btn-primary" id="featuredPlay">شاهد الآن ▶</button><button class="btn btn-ghost" id="featuredShare">مشاركة</button></div>
@@ -414,9 +168,7 @@
 
       <div class="academy-stats">
         <div class="academy-stat"><strong id="contentCount">0</strong><span>فيديو متاح الآن</span></div>
-        <div class="academy-stat"><strong>3,417</strong><span>عدد المستفيدين</span></div>
-        <div class="academy-stat"><strong>161</strong><span>عدد الفرص</span></div>
-        <div class="academy-stat"><strong>19,326</strong><span>عدد الساعات</span></div>
+        <div class="academy-stat academy-stat--description"><span>محتوى للتعلّم والتطبيق، متاح للجميع.</span></div>
       </div>
 
       <section id="library">
@@ -445,7 +197,11 @@
       </section>
     </div>
 
-    <div class="academy-footer"><span>يعرض أحدث الفيديوهات المتاحة في خلاصات قناتَي رقيم على YouTube.</span><span class="pixel">RAQEEM / 2026</span></div>
+    <div class="academy-footer"><span>يعرض أحدث الفيديوهات التي تتيحها خلاصات قناتَي رقيم على YouTube.</span><a href="mailto:raqeemimpact@gmail.com" dir="ltr">raqeemimpact@gmail.com</a></div>
+    <div class="academy-social" aria-label="روابط التواصل مع رقيم">
+      <a href="https://www.instagram.com/raqeem_jo/?hl=en" target="_blank" rel="noopener noreferrer">Instagram <span aria-hidden="true">↗</span></a>
+      <a href="https://www.linkedin.com/company/raqee/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+    </div>
   </div>
 </section>
 
