@@ -35,7 +35,7 @@
             position: fixed; inset: 0; z-index: 1000;
             background: rgba(2, 6, 23, 0.85); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
             display: flex; justify-content: center; align-items: center; padding: 20px;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
+            
         }
         .lock-box {
             background: var(--card-bg); border: 1px solid rgba(255, 152, 0, 0.3);
@@ -46,13 +46,13 @@
         .lock-box input {
             width: 100%; padding: 15px; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
             background: rgba(0,0,0,0.4); color: #fff; font-size: 20px; text-align: center;
-            letter-spacing: 5px; margin-bottom: 25px; outline: none; transition: 0.3s;
+            letter-spacing: 5px; margin-bottom: 25px; outline: none; 
         }
         .lock-box input:focus { border-color: var(--raqeem-orange); box-shadow: 0 0 15px rgba(255, 152, 0, 0.2); }
         .btn-auth {
             background: linear-gradient(90deg, #1e3c72, #2a5298); color: #fff; border: none;
             padding: 15px; width: 100%; border-radius: 12px; font-weight: 900; font-size: 16px;
-            cursor: pointer; transition: 0.3s;
+            cursor: pointer; 
         }
         .btn-auth:hover { background: var(--raqeem-orange); color: #000; box-shadow: 0 10px 20px rgba(255,152,0,0.3); }
 
@@ -61,13 +61,13 @@
             width: 100%; max-width: 900px; padding: 40px 20px;
             display: none; /* مخفية حتى يتم تسجيل الدخول */
             flex-direction: column; align-items: center;
-            animation: fadeIn 0.6s ease-out forwards;
+            
         }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
 
         header { text-align: center; margin-bottom: 40px; width: 100%; }
         header h1 { font-size: 32px; font-weight: 900; color: #fff; text-shadow: 0 5px 15px rgba(30, 60, 114, 0.8); margin-bottom: 10px; }
-        .back-link { color: var(--neon-blue); text-decoration: none; font-size: 15px; display: inline-flex; align-items: center; gap: 5px; transition: 0.3s; }
+        .back-link { color: var(--neon-blue); text-decoration: none; font-size: 15px; display: inline-flex; align-items: center; gap: 5px;  }
         .back-link:hover { color: var(--raqeem-orange); }
 
         /* نموذج الإضافة */
@@ -81,14 +81,14 @@
         .input-group label { display: block; margin-bottom: 8px; color: var(--text-dim); font-size: 14px; font-weight: 700; }
         .input-group input {
             width: 100%; padding: 14px; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
-            background: rgba(0,0,0,0.3); color: #fff; font-size: 15px; outline: none; transition: 0.3s;
+            background: rgba(0,0,0,0.3); color: #fff; font-size: 15px; outline: none; 
         }
         .input-group input:focus { border-color: var(--raqeem-orange); background: rgba(0,0,0,0.5); }
         .btn-submit {
             background: var(--raqeem-orange); color: #000; border: none; padding: 16px; border-radius: 12px;
-            font-weight: 900; font-size: 16px; cursor: pointer; width: 100%; transition: 0.3s; margin-top: 10px;
+            font-weight: 900; font-size: 16px; cursor: pointer; width: 100%;  margin-top: 10px;
         }
-        .btn-submit:hover { background: #ffaa33; box-shadow: 0 10px 25px rgba(255,152,0,0.4); transform: translateY(-2px); }
+        .btn-submit:hover { background: #ffaa33; box-shadow: 0 10px 25px rgba(255,152,0,0.4); }
 
         /* قائمة الدورات الفعالة */
         .section-title { width: 100%; color: var(--raqeem-orange); margin-bottom: 20px; font-size: 22px; font-weight: 900; border-bottom: 1px solid rgba(255,152,0,0.2); padding-bottom: 10px; }
@@ -96,7 +96,7 @@
         .list-item {
             background: rgba(30, 60, 114, 0.2); border: 1px solid rgba(30, 60, 114, 0.5);
             padding: 20px; border-radius: 16px; display: flex; justify-content: space-between; align-items: center;
-            transition: 0.3s;
+            
         }
         .list-item:hover { background: rgba(30, 60, 114, 0.4); border-color: var(--raqeem-blue); }
         .item-info h3 { color: #fff; margin-bottom: 8px; font-size: 18px; font-weight: 800; }
@@ -104,7 +104,7 @@
         
         .btn-del {
             background: rgba(239, 68, 68, 0.1); color: var(--danger); border: 1px solid rgba(239, 68, 68, 0.3);
-            padding: 10px 20px; border-radius: 10px; cursor: pointer; font-weight: 700; transition: 0.3s; flex-shrink: 0;
+            padding: 10px 20px; border-radius: 10px; cursor: pointer; font-weight: 700;  flex-shrink: 0;
         }
         .btn-del:hover { background: var(--danger); color: #fff; box-shadow: 0 5px 15px rgba(239, 68, 68, 0.4); }
 
@@ -116,8 +116,9 @@
             header h1 { font-size: 26px; }
         }
     </style>
+<link rel="stylesheet" href="assets/apple-pages.css">
 </head>
-<body>
+<body class="apple-admin">
 
     <div class="lock-screen" id="lockScreen">
         <div class="lock-box">
@@ -178,11 +179,9 @@
                 // إخفاء شاشة القفل وإظهار اللوحة
                 const lockScreen = document.getElementById('lockScreen');
                 lockScreen.style.opacity = '0';
-                setTimeout(() => {
                     lockScreen.style.visibility = 'hidden';
                     document.getElementById('adminPanel').style.display = 'flex';
                     renderList(); // رسم الدورات
-                }, 500);
             } else {
                 alert('كلمة المرور غير صحيحة. يرجى المحاولة مرة أخرى.');
                 passInput.value = '';
